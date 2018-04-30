@@ -1,0 +1,47 @@
+{
+  "name": "stubtrax",
+  "version": "1.0.0",
+  "description": "Stubtrax is my Back-End capstone project at Nashville Software School",
+  "main": "server.js",
+  "scripts": {
+    "create-db": "node create-db.js",
+    "sass": "node-sass client/sass/ -o client/css/",
+    "lint": "eslint --color **/*.js --ignore-pattern node_modules/",
+    "dev": "concurrently \"nodemon server.js\" \"rerun-script\""
+  },
+  "watches": {
+    "sass": [
+      "client/sass/*.scss"
+    ],
+    "lint": "**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajwolfcale/stubtrax.git"
+  },
+  "keywords": [],
+  "author": "Aaron Wolfcale",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajwolfcale/stubtrax/issues"
+  },
+  "homepage": "https://github.com/ajwolfcale/stubtrax#readme",
+  "dependencies": {
+    "angular": "^1.6.10",
+    "angular-route": "^1.6.10",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "imdb-api": "^3.1.2",
+    "node-sass": "^4.9.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.4.1",
+    "pg-hstore": "^2.3.2",
+    "rerun-script": "^0.6.0",
+    "sequelize": "^4.37.6"
+  }
+}
