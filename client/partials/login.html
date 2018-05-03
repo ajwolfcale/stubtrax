@@ -1,0 +1,16 @@
+
+<section class="auth-form">
+    <h2>Login</h2>
+    <h3 class="formError">{{errorMsg}}</h3>
+    <div>
+      Username:
+      <input type="text" autofocus="true" ng-model="account.username">
+    </div>
+    <div>
+      Password:
+      <input type="password" ng-model="account.password">
+    </div>
+    <div>
+      <button class="btn btn-info" ng-click="login()">Login</button>
+    </div>
+</section>
