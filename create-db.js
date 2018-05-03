@@ -1,6 +1,8 @@
 'use strict';
 
 let models = require("./server/models");
+let { categories } = require('./server/seeders/categories');
+
 
 models.sequelize.sync({force: true})
   .then( () => {
@@ -10,6 +12,14 @@ models.sequelize.sync({force: true})
       password: "a"
     });
   })
+  .then(() => {
+    return models.Category.bulkCreate(categories);
+  })
   .then( () => {
     process.exit();
   });
+
+// TODO: Build category model
+  
+
+

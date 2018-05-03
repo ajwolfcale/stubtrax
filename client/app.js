@@ -18,6 +18,10 @@ angular.module("Stubtrax", ['ngRoute']).config($routeProvider => {
       templateUrl: "partials/expense.html",
       controller: "AuthCtrl"
     })
+    .when("/receipt", {
+      templateUrl: "partials/receipt.html",
+      controller: "receiptCtrl"
+    })
     .otherwise("/");
 });
 
