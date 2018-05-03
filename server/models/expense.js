@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     writeoff: DataTypes.BOOLEAN,
     receipt: DataTypes.STRING,
     notes: DataTypes.STRING
-  }, {});
+  }, { tableName: "expenses" });
   Expense.associate = function(models) {
     Expense.belongsTo(models.User, {
       foreignKey: "user_id"
