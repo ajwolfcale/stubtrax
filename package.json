@@ -7,7 +7,7 @@
     "create-db": "node create-db.js",
     "sass": "node-sass client/sass/ -o client/css/",
     "lint": "eslint --color **/*.js --ignore-pattern node_modules/",
-    "dev": "concurrently \"nodemon server.js\" \"rerun-script\""
+    "dev": "rerun-script"
   },
   "watches": {
     "sass": [
@@ -29,13 +29,17 @@
   "dependencies": {
     "angular": "^1.6.10",
     "angular-route": "^1.6.10",
+    "angular-ui-bootstrap": "^2.5.6",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
+    "bootstrap": "^4.1.1",
     "concurrently": "^3.5.1",
     "dotenv": "^5.0.1",
+    "eslint": "^4.19.1",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "imdb-api": "^3.1.2",
+    "jquery": "^3.3.1",
     "node-sass": "^4.9.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
