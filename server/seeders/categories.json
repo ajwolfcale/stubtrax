@@ -1,0 +1,51 @@
+{
+	"categories": [{
+			"type": "home"
+		},
+		{
+			"type": "utilities"
+		},
+		{
+			"type": "groceries"
+		},
+		{
+			"type": "car maintenance"
+		},
+		{
+			"type": "restaurants"
+		},
+		{
+			"type": "entertainment"
+		},
+		{
+			"type": "education"
+		},
+		{
+			"type": "insurance"
+		},
+		{
+			"type": "phone"
+		},
+		{
+			"type": "gym membership"
+		},
+		{
+			"type": "fuel"
+		},
+		{
+			"type": "travel"
+		},
+		{
+			"type": "office supplies"
+		},
+		{
+			"type": "networking"
+		},
+		{
+			"type": "clothing"
+		},
+		{
+			"type": "other"
+		}
+	]
+}
