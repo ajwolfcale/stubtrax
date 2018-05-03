@@ -1,16 +1,16 @@
-
 "use strict";
 
 angular
   .module("Stubtrax")
   .factory("AuthFactory", ($q, $http, $rootScope) => {
+
     let currentUser = null;
 
     return {
       createUser(userObj) {
         return $q((resolve, reject) => {
           $http.post("/register", userObj).then(userData => {
-            console.log("new user added", userData);
+            console.log("added a new user", userData);
             currentUser = userData;
             resolve(userData.data);
           });
