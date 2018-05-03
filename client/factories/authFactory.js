@@ -2,7 +2,7 @@
 
 angular
   .module("Stubtrax")
-  .factory("AuthFactory", ($q, $http, $rootScope) => {
+  .factory("AuthFactory", function($q, $http, $rootScope) {
 
     let currentUser = null;
 
@@ -13,9 +13,9 @@ angular
             console.log("added a new user", userData);
             currentUser = userData;
             resolve(userData.data);
+          }).catch(err => {
+            reject(err);
           });
-        }).catch(err => {
-          reject(err);
         });
       },
 
@@ -26,9 +26,21 @@ angular
           $http.post("/login", userObj).then(user => {
             currentUser = user.data;
             resolve(user.data);
+          }).catch(err => {
+            reject(err);
           });
-        }).catch(err => {
-          reject(err);
+        });
+      },
+
+      // TODO: //**********  MMMMAAAAAAYYYYYBBBBEEEEEEEE???????????????????  ************
+      logoutUser(userObj) {
+        console.log("bye bye user", userObj);
+        return $q((resolve, reject) => {
+          $http.post("/logout", userObj).then(user => {
+            resolve(user.data);
+          }).catch(err => {
+            reject(err);
+          });
         });
       },
 

@@ -25,7 +25,7 @@ angular.module("Stubtrax", ['ngRoute']).config($routeProvider => {
 angular
   .module("Stubtrax")
   .run(($rootScope, $location, $route, $window, AuthFactory) => {
-    $rootScope.$on("$routeChangeStart", function(event, next, current) {
+    $rootScope.$on("$routeChangeStart", function(event, next) {
       AuthFactory.setUserStatus().then(() => {
         console.log("user", AuthFactory.getCurrentUser());
         console.log("next", next);
