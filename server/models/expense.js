@@ -1,10 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Expense = sequelize.define('Expense', {
+    writeoff: DataTypes.BOOLEAN,
+    business: DataTypes.BOOLEAN,
     merchant: DataTypes.STRING,
     date: DataTypes.DATE,
     total: DataTypes.DECIMAL,
-    writeoff: DataTypes.BOOLEAN,
     receipt: DataTypes.STRING,
     notes: DataTypes.STRING
   }, { tableName: "expenses" });
@@ -12,6 +13,13 @@ module.exports = (sequelize, DataTypes) => {
     Expense.belongsTo(models.User, {
       foreignKey: "user_id"
     });
+    Expense.belongsTo(models.Category, {
+      foreignKey: 'category_id'
+    });
+    Expense.belongsTo(models.BillableReimbursable, {
+      foreignKey: "billableReimbursable_id"
+    });
   };
   return Expense;
 };
+

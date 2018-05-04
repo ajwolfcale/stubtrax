@@ -1,15 +1,17 @@
-<h3>Choose a receipt to add to your expense.</h3>
+<h3>Add your receipt.</h3>
+
 <form>
   <div class="form-group">
-    <label for="exampleFormControlFile1">Example file input</label>
     <input type="file" class="form-control-file" id="exampleFormControlFile1">
   </div>
   <div>
-    <button class="btn btn-default" ng-click="postReceipt()">add receipt to expense</button>
+      <button type="button" class="btn btn-success" ng-click="postReceipt(); go('/expense') ">add receipt to expense</button>
   </div>
 </form>
+<div>
+    <button type="button" class="btn btn-success" ng-click="go('/expense')">Skip</button>
+</div>
 
 
-<h3>Choose a receipt to add to your expense.</h3>
 
-<h5>camera pluggin goes here</h5>
+<!-- <h5>camera pluggin goes here</h5> -->
