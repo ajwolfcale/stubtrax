@@ -1,17 +1,52 @@
-<h3>welcome user</h3>
-
 <h1>Add New Expense</h1>
 
 <!-- TODO: ANGULAR MOMENT PICKER FOR DATE -->
+
 <form>
   <div class="form-group">
-      <label for="exampleFormControlSelect1">Example select</label>
+    <label for="exampleInputPassword1">When did you spend money?</label>
+    <input type="text" class="form-control" placeholder="xx/xx/xxxx">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Where did you spend money?</label>
+    <input type="text" class="form-control" placeholder="Merchant...">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Total</label>
+    <input type="number" class="form-control" id="exampleInputPassword1" placeholder="$Total...">
+  </div>
+  <div class="form-group">
+      <label for="exampleInputPassword1">Note</label>
+      <input type="text" class="form-control" placeholder="notes...">
+  </div>
+  <div class="form-group">
+      <label for="exampleFormControlSelect1">Select the expense category</label>
       <select class="form-control" id="exampleFormControlSelect1">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
+        <option>Home</option>
+        <option>Utilities</option>
+        <option>Groceries</option>
+        <option>Car Maintenance</option>
+        <option>Restaurants</option>
+        <option>Entertainment</option>
+        <option>Education</option>
+        <option>Insurance</option>
+        <option>Phone</option>
+        <option>Gym Membership</option>
+        <option>Fuel</option>  
+        <option>Travel</option>
+        <option>Office Supplies</option>
+        <option>Networking</option>
+        <option>Clothing</option>
+        <option>Other</option>        
       </select>
     </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Is this a business expense</label>
+    </div>
+      <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Is this a tax write-off?</label>
+    </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>

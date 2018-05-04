@@ -2,17 +2,16 @@
 
 angular
   .module("Stubtrax")
-  .factory("ExpenseFactory", function($q, $http, $rootScope) {
-    return 
-      addExpense(userObj) {
-        return $q((resolve, reject) => {
-          $http.post("/register", userObj).then(userData => {
-            console.log("added a new user", userData);
-            currentUser = userData;
-            resolve(userData.data);
-          }).catch(err => {
-            reject(err);
-          });
-        });
-      }
+  .factory("ExpenseFactory", function($q, $http, $rootScope) {    
+    // return 
+    //   addExpense(expObj) {
+    //     return $q((resolve, reject) => {
+    //       $http.post("/add-expense", expObj).then(expense => {
+    //         // console.log("added an expense", expense);
+    //         resolve(expense);
+    //       }).catch(err => {
+    //         reject(err);
+    //       });
+    //     });
+    //   }
 });
