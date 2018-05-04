@@ -32,7 +32,7 @@ angular
         });
       },
 
-      // TODO: //**********  MMMMAAAAAAYYYYYBBBBEEEEEEEE???????????????????  ************
+      //**********  Logout User ************
       logoutUser(userObj) {
         console.log("bye bye user", userObj);
         return $q((resolve, reject) => {

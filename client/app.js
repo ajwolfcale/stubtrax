@@ -20,7 +20,7 @@ angular.module("Stubtrax", ['ngRoute']).config($routeProvider => {
     })
     .when("/receipt", {
       templateUrl: "partials/receipt.html",
-      controller: "receiptCtrl"
+      controller: "ReceiptCtrl"
     })
     .otherwise("/");
 });
