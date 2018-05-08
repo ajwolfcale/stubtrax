@@ -1,10 +1,49 @@
+@mixin box-shadow($x, $y, $offset, $blur) {
+  -webkit-box-shadow: $x $y $offset $blur rgba(0, 0, 0, 0.61);
+  -moz-box-shadow: $x $y $offset $blur rgba(0, 0, 0, 0.61);
+  box-shadow: $x $y $offset $blur rgba(0, 0, 0, 0.61);
+}
+
+@mixin text-shadow($ems) {
+  text-shadow: 0 $ems $ems rgba(0, 0, 0, 0.85);
+}
+
 body{
   background: rgb(65, 65, 65);
   border-radius: 10px;
   color: rgb(231, 231, 21);
-  border: 1px solid black;
+
 }
 
+.navStyle{
+  margin-bottom: 10px;
+}
 
 // */*/*/*/*/* LOGIN PAGE */*/*/*/*/*
 
+
+
+// */*/*/*/*/* Receipt Image Page */*/*/*/*/*
+
+.receiptSender {
+  background-color: #05887d;
+  cursor: pointer;
+  display:inline-block;
+  padding: 0.5em 0.9em;
+  border:0.16em solid rgb(158, 158, 158);
+  border-radius: 0.3em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Roboto',
+  sans-serif;
+  font-weight:300;
+  color:#FFFFFF;
+  @include text-shadow(0.04em);
+  text-align:center;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #05887d;    
+    border:0.16em solid rgb(255, 255, 255);  
+  }
+}

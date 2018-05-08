@@ -1,17 +1,38 @@
 <h3>Add your receipt.</h3>
 
-<form>
+<form action="/api/upload" method="post" enctype="multipart/form-data">
+
   <div class="form-group">
-    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+    <label for="exampleFormControlFile1">Choose your reciept to add.</label>
+    
+    <input id="receiptAdder" ng-model="receiptFinder" ng-click name="receiptImage" type="file" value="upload" class="form-control-file" >
+    
+    <progress value="0" max="100" id="uploader">0%</progress>
   </div>
+
   <div>
-      <button type="button" class="btn btn-success" ng-click="postReceipt(); go('/expense') ">add receipt to expense</button>
+    <!-- <button type="button" class="btn btn-success" ng-click="postReceipt(); go('/expense') ">add receipt to expense</button> -->
+    <button type="submit" class="receiptSender btn btn-success">add receipt to expense</button>
   </div>
 </form>
+
+<!-- TODO: take this br out -->
+<br>
+
 <div>
-    <button type="button" class="btn btn-success" ng-click="go('/expense')">Skip</button>
+    <button type="button" class="receiptSender btn btn-success" ng-click="go('/expense')">Skip for now</button>
 </div>
 
 
+<!-- 
+<progress value="0" max="100" id="uploader">0%</progress>
+<div>
+    <div>
+        <div>
+            <input ng-model="pushImage" type="file" value="upload" id="fileButton" ng-click="pushFile()">
+            <button class="firebaseSubmit btn btn-success" ng-click="saveRides()">Submit</button>
+        </div>
+    </div>
+</div> -->
 
 <!-- <h5>camera pluggin goes here</h5> -->
