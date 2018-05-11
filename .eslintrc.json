@@ -15,6 +15,7 @@
     "no-console": "off"
   },
   "globals": {
-    "angular": true
+    "angular": true,
+    "firebase": true
   }
 }

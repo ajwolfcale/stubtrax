@@ -1,10 +1,11 @@
 'use strict';
 
 module.exports.postExpense = (req, res) => {
+  console.log('req.body', req.body);
   const models = req.app.get('models');
   const { Expense } = models;
   Expense.create({
-    writeOff: req.body.writeOff,
+    writeoff: req.body.writeoff,
     business: req.body.business,
     merchant: req.body.merchant,
     date: req.body.date,
@@ -20,5 +21,6 @@ module.exports.postExpense = (req, res) => {
       res.status(500).json({ "error": err });
     });
 };
+
 
 

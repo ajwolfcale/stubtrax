@@ -28,6 +28,9 @@
   "homepage": "https://github.com/ajwolfcale/stubtrax#readme",
   "dependencies": {
     "angular": "^1.6.10",
+    "angular-cuppa-datepicker": "^1.0.4",
+    "angular-moment-picker": "^0.10.2",
+    "angular-momentjs": "^0.2.2",
     "angular-route": "^1.6.10",
     "angular-ui-bootstrap": "^2.5.6",
     "bcrypt-nodejs": "0.0.3",
@@ -40,6 +43,8 @@
     "express-session": "^1.15.6",
     "firebase": "^4.13.1",
     "jquery": "^3.3.1",
+    "lodash": "^4.17.10",
+    "moment": "^2.20.1",
     "ng-file-upload": "^12.2.13",
     "node-sass": "^4.9.0",
     "passport": "^0.4.0",

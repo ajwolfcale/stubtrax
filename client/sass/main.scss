@@ -25,6 +25,14 @@ body{
 
 // */*/*/*/*/* Receipt Image Page */*/*/*/*/*
 
+.thumb {
+  width: 40px;
+  height: 80px;
+  float: none;
+  position: relative;
+  top: 7px;
+}
+
 .receiptSender {
   background-color: #05887d;
   cursor: pointer;

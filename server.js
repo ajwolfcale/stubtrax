@@ -16,6 +16,15 @@ app.set("models", require("./server/models"));
 app.use(express.static(__dirname + "/client"));
 app.use("/angular", express.static(__dirname + "/node_modules/angular/"));
 app.use("/angular-route", express.static(__dirname + "/node_modules/angular-route/"));
+// DATE STUFF
+app.use("/angular-cuppa-datepicker", express.static(__dirname + "/node_modules/angular-cuppa-datepicker/js/"));
+app.use("/ng-file-upload", express.static(__dirname + "/node_modules/ng-file-upload/dist/"));
+
+// app.use("/angular-moment-picker", express.static(__dirname + "/node_modules/angular-moment-picker/dist/"));
+// app.use("/moment", express.static(__dirname + "/node_modules/moment/min/"));
+// app.use("/angular-momentjs", express.static(__dirname + "/node_modules/angular-momentjs/"));
+
+
 
 
 app.use(

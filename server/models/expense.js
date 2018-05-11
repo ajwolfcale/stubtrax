@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Expense = sequelize.define('Expense', {
-    writeoff: DataTypes.BOOLEAN,
-    business: DataTypes.BOOLEAN,
+    writeoff: {type: DataTypes.BOOLEAN, defaultValue: false},
+    business: {type: DataTypes.BOOLEAN, defaultValue: false},
     merchant: DataTypes.STRING,
     date: DataTypes.DATE,
     total: DataTypes.DECIMAL,

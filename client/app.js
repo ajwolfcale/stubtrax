@@ -1,7 +1,6 @@
 "use strict";
 // 'ui.bootstrap'
-angular.module("Stubtrax", ['ngRoute'])
-  .constant("FBUrl", "gs://receipt-storage.appspot.com/files/receipt-images/")
+angular.module("Stubtrax", ['ngRoute', 'ngFileUpload'])
   .config($routeProvider => {
     $routeProvider
       .when("/welcome", {
@@ -18,10 +17,6 @@ angular.module("Stubtrax", ['ngRoute'])
       })
       .when("/expense", {
         templateUrl: "partials/expense.html",
-        controller: "ExpenseCtrl"
-      })
-      .when("/receipt", {
-        templateUrl: "partials/receipt.html",
         controller: "ExpenseCtrl"
       })
       .otherwise("/");

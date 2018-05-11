@@ -1,52 +1,78 @@
 <h1>Add New Expense</h1>
 
-<!-- TODO: ANGULAR MOMENT PICKER FOR DATE -->
+<form name="myForm">
+  <fieldset>
+    
+    <label>Receipt:</label> 
+    <div class="input-group mb-3">
+      <div class="custom-file">
+          <input class="custom-file-input" type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-change="uploadPic(picFile)" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+          <label class="custom-file-label" for="inputGroupFile01">Receipt Image</label>
+          <i ng-show="myForm.file.$error.required">*required</i>
+      </div>
+    </div>
+    <i ng-show="myForm.file.$error.maxSize">File too large {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+    <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb">
+    <button ng-click="picFile = null" ng-show="picFile">Remove</button>
+  
+    <div class="form-group">
+      <label>Date:</label>
+      <input name="date" ng-model="newExpense.date" type="date" class="form-control" placeholder="date..." required>
+    </div>
 
-<form>
-  <div class="form-group">
-    <label for="exampleInputPassword1">When did you spend money?</label>
-    <input type="text" class="form-control" placeholder="xx/xx/xxxx">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Where did you spend money?</label>
-    <input type="text" class="form-control" placeholder="Merchant...">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Total</label>
-    <input type="number" class="form-control" id="exampleInputPassword1" placeholder="$Total...">
-  </div>
-  <div class="form-group">
+    <div class="form-group">
+      <label>Where did you spend money?</label>
+      <input name="merchant" ng-model="newExpense.merchant" type="text" class="form-control" placeholder="Merchant..." required>
+    </div>
+
+    <div class="form-group">
+      <label>Total</label>
+      <input name="total" ng-model="newExpense.total" type="number" min="0" step=".01"class="form-control" placeholder="$0.00" required>
+    </div>
+
+    <div class="form-group">
       <label for="exampleInputPassword1">Note</label>
-      <input type="text" class="form-control" placeholder="notes...">
-  </div>
-  <div class="form-group">
+      <input name="notes" ng-model="newExpense.notes" type="text" class="form-control" placeholder="notes...">
+    </div>
+
+    <div class="form-group">
       <label for="exampleFormControlSelect1">Select the expense category</label>
-      <select class="form-control" id="exampleFormControlSelect1">
-        <option>Home</option>
-        <option>Utilities</option>
-        <option>Groceries</option>
-        <option>Car Maintenance</option>
-        <option>Restaurants</option>
-        <option>Entertainment</option>
-        <option>Education</option>
-        <option>Insurance</option>
-        <option>Phone</option>
-        <option>Gym Membership</option>
-        <option>Fuel</option>  
-        <option>Travel</option>
-        <option>Office Supplies</option>
-        <option>Networking</option>
-        <option>Clothing</option>
-        <option>Other</option>        
+      <select name="category_id" ng-model="newExpense.category_id" class="form-control" id="exampleFormControlSelect1" required>
+        <option value="4">Car Maintenance</option>
+        <option value="15">Clothing</option>
+        <option value="7">Education</option>
+        <option value="6">Entertainment</option>
+        <option value="11">Fuel</option>
+        <option value="3">Groceries</option>
+        <option value="10">Gym Membership</option>
+        <option value="1">Home</option>
+        <option value="8">Insurance</option>
+        <option value="14">Networking</option>
+        <option value="13">Office Supplies</option>
+        <option value="9">Phone</option>
+        <option value="5">Restaurants</option>
+        <option value="12">Travel</option>
+        <option value="2">Utilities</option>
+        <option value="16">Other</option>
       </select>
     </div>
+
     <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Is this a business expense</label>
+      <input ng-model="newExpense.business" type="checkbox" class="form-check-input" value="true" name="business">
+      <label class="form-check-label">Business Expense</label>
     </div>
-      <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Is this a tax write-off?</label>
+
+    <div class="form-group form-check">
+      <input ng-model="newExpense.writeoff" type="checkbox" class="form-check-input" value="true" name="writeoff">
+      <label class="form-check-label">Tax Write-Off?</label>
     </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+
+    <!-- HIDDEN INPUTS -->
+    <input name="receipt" ng-model="receiptUrl" type="hidden" class="form-control" value={{receiptUrl}}>
+    <input name="user_id" ng-model="newExpense.user_id" type="hidden" class="form-control">
+
+
+    <button ng-disabled="!myForm.$valid" ng-click="addExpense()">Submit</button>
+
+  </fieldset>
 </form>
