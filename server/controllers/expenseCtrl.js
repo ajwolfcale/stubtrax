@@ -12,7 +12,8 @@ module.exports.postExpense = (req, res) => {
     total: req.body.total,
     receipt: req.body.receipt,
     notes:req.body.notes,
-    user_id: req.user.id
+    user_id: req.user.id,
+    category_id: req.body.category_id
   })
     .then(data => {
       console.log('NEW EXPENSE = ', data);

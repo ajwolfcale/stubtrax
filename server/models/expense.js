@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "user_id"
     });
     Expense.belongsTo(models.Category, {
-      foreignKey: 'category_id'
+      foreignKey: "category_id"
     });
     Expense.belongsTo(models.BillableReimbursable, {
       foreignKey: "billableReimbursable_id"

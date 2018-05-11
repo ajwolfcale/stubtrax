@@ -48,7 +48,7 @@ angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $q, $locat
   
   $scope.addExpense = () => {
     $scope.newExpense.receipt = $scope.receiptUrl;
-    console.log("NEW EXPENSE  :", $scope.newExpense);
+    // console.log("NEW EXPENSE  :", $scope.newExpense);
     FBStorageFactory.sendExpense($scope.newExpense);
   };
 
