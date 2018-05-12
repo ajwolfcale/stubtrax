@@ -1,0 +1,68 @@
+<h1>Search for your Expenses</h1>
+<form>
+  <div>
+    <input type="checkbox" name="writeOffSearch" id="writeOffSearch">
+    <label class="form-check-label">Tax Write-Off</label>
+  </div>
+
+  <div>
+    <input type="checkbox" name="writeOffSearch" id="writeOffSearch">
+    <label class="form-check-label">Business Expense</label>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="inputGroupSelect01">Year</label>
+    </div>
+    <select class="custom-select" id="inputGroupSelect01" required>
+      <option selected>Choose...</option>
+      <option>2017</option>
+      <option>2018</option>
+      <option>2019</option>
+      <option>2020</option>
+      <option>2021</option>
+      <option>2022</option>
+      <option>2023</option>
+      <option>2024</option>
+      <option>2025</option>
+      <option>2026</option>
+      <option>2027</option>
+      <option>2028</option>
+      <option>2029</option>
+      <option>2030</option>
+    </select>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="inputGroupSelect01">Month</label>
+    </div>
+    <select class="custom-select" id="inputGroupSelect01" required>
+      <option selected>Choose...</option>
+      <option value="01">January</option>
+      <option value="02">February</option>
+      <option value="03">March</option>
+      <option value="04">April</option>
+      <option value="05">May</option>
+      <option value="06">June</option>
+      <option value="07">July</option>
+      <option value="08">August</option>
+      <option value="09">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
+    </select>
+  </div>
+
+  <button ng-disabled="!myForm.$valid">Search</button>
+</form>
+
+<!-- TODO:----------------DEMO:---------------- -->
+
+<button ng-click="searchForExpenses()">search for expenses</button>
+
+<div class="movie-container">
+  <div class="expenseCard" ng-repeat="expense in expenses">
+    <h4>{{expense}}</h4>
+  </div>
+</div>

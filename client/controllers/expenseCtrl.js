@@ -41,15 +41,26 @@ angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $q, $locat
         category_id: ""
       };
     });
-    
   }; 
 
-  
-  
   $scope.addExpense = () => {
     $scope.newExpense.receipt = $scope.receiptUrl;
     // console.log("NEW EXPENSE  :", $scope.newExpense);
     FBStorageFactory.sendExpense($scope.newExpense);
+  };
+
+
+
+  // TODO: Expenes search 
+
+  $scope.searchForExpenses = () => {
+    console.log('button pressed');
+    FBStorageFactory.getAllUserExpenses()
+      .then(expenses => {
+        // $scope.expenses = Object.values(expenses);
+        console.log('results:  ', expenses);
+      })
+      .catch(err => console.log(err));
   };
 
 });

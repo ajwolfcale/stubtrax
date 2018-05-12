@@ -19,6 +19,10 @@ angular.module("Stubtrax", ['ngRoute', 'ngFileUpload'])
         templateUrl: "partials/expense.html",
         controller: "ExpenseCtrl"
       })
+      .when("/expense-search", {
+        templateUrl: "partials/expense-search.html",
+        controller: "ExpenseCtrl"
+      })
       .otherwise("/");
   })
   .run(FBCreds => {
