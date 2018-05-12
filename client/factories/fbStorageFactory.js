@@ -22,15 +22,21 @@ angular
       console.log('ya hearin me??????');
       return $q(function (resolve, reject) {
         $http.get('/getExpenses', expense)
-          .then(function (data) {
-            resolve(data);
-            console.log('DATA SHIT: ', data);
+          .then(function (expense) {
+            resolve(expense);
+            console.log('DATA : ', expense);
           })
           .catch(function (error) {
             reject(error);
           });
       });
     };
+
+
+    // let getAllUserExpenses = (expense) => {
+      
+    // }
+
 
     return { pushImage, sendExpense, getAllUserExpenses };
   });
