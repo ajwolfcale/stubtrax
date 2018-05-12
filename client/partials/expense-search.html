@@ -59,10 +59,38 @@
 
 <!-- TODO:----------------DEMO:---------------- -->
 
-<button ng-click="searchForExpenses()">search for expenses</button>
+<button class="btn" ng-click="searchForExpenses()">search for expenses</button>
+<br>
+<br>
+<button class="btn" ng-click="searchExpenseDate()">search for expenses between dates</button>
+<br>
+<br>
+<button class="btn" ng-click="searchExpenseWriteoffs()">search for writeoffs between dates</button>
+<br>
+<br>
+<button class="btn" ng-click="searchBusinessExpenses()">search for business expenses between dates</button>
+<br>
+<br>
+<button class="btn" ng-click="searchBusinessWriteoffs()">search for business writeoffs between dates</button>
+<br>
+<br>
+<button class="btn" ng-click="searchExpCats()">search for categories between dates</button>
+<br>
+<br>
+<button class="btn" ng-click="searchCatWriteOffs()">search for categories between dates that are tax write-offs</button>
+<br>
+<br>
+<button class="btn" ng-click="searchBizCats()">search for exp by category that are business expenses</button>
+<br>
+<br>
+<button class="btn" ng-click="searchBizWriteCats()">search for exp by category that are business / tax writeoffs</button>
+
+
+
 
 <div class="movie-container">
   <div class="expenseCard" ng-repeat="expense in expenses">
     <h4>{{expense}}</h4>
   </div>
 </div>
+
