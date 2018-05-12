@@ -1,27 +1,66 @@
 'use strict';
 
-angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $location, FBStorageFactory) {
+angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $q, $location, FBStorageFactory) {
+  
+  let currentUserId = null;
+  
+  $scope.$on("handleBroadcast", function(event, user) {
+    console.log("handleBroadcast called in expenseCtrl", user);
+    currentUserId = user.id;
+    console.log("Current user in expenseCtrl", currentUserId);
+  });
 
   $scope.go = function ( path ) {
     $location.path( path );
   };
   
-  let receiptButton = document.getElementById('receiptAdder');
-  
-  // let storage = firebase.storage();
-  let file;
+  // FIREBASE SENDER
   let storageRef;
-  let uploader = document.getElementById('uploader');
-
-  receiptButton.addEventListener('change', function (event) {
-    file = event.target.files[0];
+  
+  $scope.uploadPic = function (file) {
     storageRef = firebase.storage().ref(file.name);
-    FBStorageFactory.pushImage(event, uploader);
-    console.log("YOOOOOOOO: ", file.name);
-  }); 
+    FBStorageFactory.pushImage(file);
+    console.log("FILE NAME: ", file.name);
+    
+    return $q(function (resolve, reject) {
+      storageRef.getDownloadURL().then(function (url) {
+        setTimeout(function () {
+          console.log('firebase URL:  ', url);
+          $scope.receiptUrl = url;
+        }, 1000);
+      });
+    }).then(() => {
+      $scope.newExpense = {
+        writeoff: false,
+        business: false,
+        merchant: "",
+        date: "",
+        total: "",
+        notes: "",
+        user_id: currentUserId,
+        category_id: ""
+      };
+    });
+  }; 
+
+  $scope.addExpense = () => {
+    $scope.newExpense.receipt = $scope.receiptUrl;
+    // console.log("NEW EXPENSE  :", $scope.newExpense);
+    FBStorageFactory.sendExpense($scope.newExpense);
+  };
+
+
+
+  // TODO: Expenes search 
+
+  $scope.searchForExpenses = () => {
+    console.log('button pressed');
+    FBStorageFactory.getAllUserExpenses()
+      .then(expenses => {
+        // $scope.expenses = Object.values(expenses);
+        console.log('results:  ', expenses);
+      })
+      .catch(err => console.log(err));
+  };
 
 });
-
-
-
-

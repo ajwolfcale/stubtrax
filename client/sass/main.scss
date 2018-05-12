@@ -19,11 +19,32 @@ body{
   margin-bottom: 10px;
 }
 
-// */*/*/*/*/* LOGIN PAGE */*/*/*/*/*
+// */*/*/*/*/* Expense search */*/*/*/*/*
+.movie-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  padding: 5px;
+}
 
-
+.expenseCard{
+  flex-basis: 30%;
+  text-align: left;
+  margin: 10px 0;
+  padding-bottom: 12px;
+  position: relative;
+  border: 1px solid black;
+}
 
 // */*/*/*/*/* Receipt Image Page */*/*/*/*/*
+
+.thumb {
+  width: 40px;
+  height: 80px;
+  float: none;
+  position: relative;
+  top: 7px;
+}
 
 .receiptSender {
   background-color: #05887d;

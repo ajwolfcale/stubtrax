@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Expense = sequelize.define('Expense', {
-    writeoff: DataTypes.BOOLEAN,
-    business: DataTypes.BOOLEAN,
+    writeoff: {type: DataTypes.BOOLEAN, defaultValue: false},
+    business: {type: DataTypes.BOOLEAN, defaultValue: false},
     merchant: DataTypes.STRING,
     date: DataTypes.DATE,
     total: DataTypes.DECIMAL,
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "user_id"
     });
     Expense.belongsTo(models.Category, {
-      foreignKey: 'category_id'
+      foreignKey: "category_id"
     });
     Expense.belongsTo(models.BillableReimbursable, {
       foreignKey: "billableReimbursable_id"
