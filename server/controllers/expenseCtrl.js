@@ -23,30 +23,45 @@ module.exports.postExpense = (req, res) => {
     });
 };
 
+// module.exports.getExpenses = (req, res, next) => {
+//   const { Expense } = req.app.get('models');
+//   let userExpenses;
+//   Expense.findAll({
+//     where: {
+//       user_id: req.user.id
+//     }
+//   })
+//     .then(expenses => {
+//       userExpenses = expenses.map(expense => {
+//         return {
+//           writeoff: expense.writeoff,
+//           business: expense.business,
+//           merchant: expense.merchant,
+//           date: expense.date,
+//           total: expense.total,
+//           receipt: expense.receipt,
+//           notes: expense.notes
+//         };
+//       });
+//     })   
+//     .catch(err => {
+//       console.log('Something went wrong', err);
+//       res.status(500).json({ error: err });
+//     });
+// };
+
 module.exports.getExpenses = (req, res, next) => {
   const { Expense } = req.app.get('models');
-  let userExpenses;
   Expense.findAll({
     where: {
       user_id: req.user.id
     }
   })
     .then(expenses => {
-      userExpenses = expenses.map(expense => {
-        return {
-          writeoff: expense.writeoff,
-          business: expense.business,
-          merchant: expense.merchant,
-          date: expense.date,
-          total: expense.total,
-          receipt: expense.receipt,
-          notes: expense.notes
-        };
-      });
-    })   
+      res.status(200).json(expenses);
+    })
     .catch(err => {
       console.log('Something went wrong', err);
       res.status(500).json({ error: err });
     });
 };
-

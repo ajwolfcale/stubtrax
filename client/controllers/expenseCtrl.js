@@ -57,10 +57,11 @@ angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $q, $locat
     console.log('button pressed');
     FBStorageFactory.getAllUserExpenses()
       .then(expenses => {
-        // $scope.expenses = Object.values(expenses);
-        console.log('results:  ', expenses);
-      })
-      .catch(err => console.log(err));
+        $scope.expenseList = Object.values(expenses);
+        return $scope.expenseList;
+      });
+      // $scope.expenseList = expenseList;
+    console.log('results:  ', $scope.expenseList);
   };
 
 });
