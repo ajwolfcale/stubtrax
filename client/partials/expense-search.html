@@ -1,65 +1,98 @@
-<h1>Search for your Expenses</h1>
-<form>
-  <div>
-    <input type="checkbox" name="writeOffSearch" id="writeOffSearch">
-    <label class="form-check-label">Tax Write-Off</label>
-  </div>
+<header>
+  <div ng-include="'partials/navBar.html'"></div>
+</header>
 
-  <div>
-    <input type="checkbox" name="writeOffSearch" id="writeOffSearch">
-    <label class="form-check-label">Business Expense</label>
-  </div>
+<h1>My Expenses</h1>
+<div class="filter-div">
+  <img src="images/filter.png" class="filter-btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  <label class="filter-label filter-btn" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Filters</label>
+</div>
 
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <label class="input-group-text" for="inputGroupSelect01">Year</label>
+
+
+<div class="form-div collapse" id="collapseExample">
+  <form>
+    <div class="form-group">
+      <div class="col-sm-10">
+        <label>From:</label>
+        <input name="date" ng-model="expense.date1" type="date" class="form-control" placeholder="From..." required pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))">
+      </div>
     </div>
-    <select class="custom-select" id="inputGroupSelect01" required>
-      <option selected>Choose...</option>
-      <option>2017</option>
-      <option>2018</option>
-      <option>2019</option>
-      <option>2020</option>
-      <option>2021</option>
-      <option>2022</option>
-      <option>2023</option>
-      <option>2024</option>
-      <option>2025</option>
-      <option>2026</option>
-      <option>2027</option>
-      <option>2028</option>
-      <option>2029</option>
-      <option>2030</option>
-    </select>
-  </div>
 
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <label class="input-group-text" for="inputGroupSelect01">Month</label>
+    <div class="form-group">
+      <div class="col-sm-10">
+        <label>To:</label>
+        <input name="date" ng-model="expense.date2" type="date" class="form-control" placeholder="To..." required pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))">
+      </div>
     </div>
-    <select class="custom-select" id="inputGroupSelect01" required>
-      <option selected>Choose...</option>
-      <option value="01">January</option>
-      <option value="02">February</option>
-      <option value="03">March</option>
-      <option value="04">April</option>
-      <option value="05">May</option>
-      <option value="06">June</option>
-      <option value="07">July</option>
-      <option value="08">August</option>
-      <option value="09">September</option>
-      <option value="10">October</option>
-      <option value="11">November</option>
-      <option value="12">December</option>
-    </select>
+
+    <div class="col-sm-10">
+      <div class="form-group">
+        <label>Select a category</label>
+        <select name="category_id" ng-model="expense.category_id" class="form-control" id="exampleFormControlSelect1" required>
+          <option value="4">Car Maintenance</option>
+          <option value="15">Clothing</option>
+          <option value="7">Education</option>
+          <option value="6">Entertainment</option>
+          <option value="11">Fuel</option>
+          <option value="3">Groceries</option>
+          <option value="10">Gym Membership</option>
+          <option value="1">Home</option>
+          <option value="8">Insurance</option>
+          <option value="14">Networking</option>
+          <option value="13">Office Supplies</option>
+          <option value="9">Phone</option>
+          <option value="5">Restaurants</option>
+          <option value="12">Travel</option>
+          <option value="2">Utilities</option>
+          <option value="16">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="check-div">
+      <div class="check-box form-group form-check">
+        <input ng-model="expense.business" type="checkbox" name="writeOffSearch" class="form-check-input" value="true" name="writeoff">
+        <label class="form-check-label">Tax Write-Off</label>
+      </div>
+
+      <div class="check-box form-group form-check">
+        <input ng-model="expense.writeoff" type="checkbox" name="writeOffSearch" class="form-check-input" value="true" name="business">
+        <label class="form-check-label">Business Expense</label>
+      </div>
+    </div>
+
+    <button ng-click="searchForExpenses()" class="receiptBtn">Search</button>
+  </form>
+</div>
+</div>
+
+
+<div ng-init="loadAllExpenses()">
+  <div class="expense-container">
+    <div class="expenseCard" ng-repeat="expense in expenses">
+      <div>
+        <p>Merchant: {{expense.merchant}}</p>
+        <p>Date: {{expense.date}}</p>
+        <p>Total: ${{expense.total}}</p>
+        <p>Comments: {{expense.notes}}</p>
+      </div>
+      <div>
+        <img class="big-thumb" ng-src={{expense.receipt}} alt="poster for expense.receipt">
+      </div>
+    </div>
   </div>
+</div>
 
-  <button ng-disabled="!myForm.$valid">Search</button>
-</form>
-
-<!-- TODO:----------------DEMO:---------------- -->
-
-<button class="btn" ng-click="searchForExpenses()">search for expenses</button>
+<!-- TODO:----------------DEMO:---------------- 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<button class="btn" ng-click="searchForExpenses()">search for expenses</button> 
 <br>
 <br>
 <button class="btn" ng-click="searchExpenseDate()">search for expenses between dates</button>
@@ -84,13 +117,4 @@
 <br>
 <br>
 <button class="btn" ng-click="searchBizWriteCats()">search for exp by category that are business / tax writeoffs</button>
-
-
-
-
-<div class="movie-container">
-  <div class="expenseCard" ng-repeat="expense in expenses">
-    <h4>{{expense}}</h4>
-  </div>
-</div>
-
+ -->

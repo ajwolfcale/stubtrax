@@ -49,118 +49,104 @@ angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $q, $locat
     FBStorageFactory.sendExpense($scope.newExpense);
   };
 
+  $scope.loadAllExpenses = () => {
+    console.log("button press", $scope.expense);
+    FBStorageFactory.getAllUserExpenses($scope.expense).then(expenses => {
+      const expenseList = expenses.data.map(expense => {
+        if (expense.receipt === null) expense.receipt = "/images/no-image.png";
+        expense.date = expense.date.length > 10 ? `${expense.date.slice(0, 10)}` : expense.date;
+        return expense;
+      });
+      $scope.expenses = expenseList;
+    });
+  };
+
   // All Expenses by User Id
   $scope.searchForExpenses = () => {
-    console.log('button pressed');
-    FBStorageFactory.getAllUserExpenses()
-      .then(expenses => {
-        $scope.expenseList = Object.values(expenses);
-        return $scope.expenseList;
+    console.log("button press", $scope.expense);
+    FBStorageFactory.findExpense($scope.expense).then(expenses => {
+      const expenseList = expenses.data.map(expense => {
+        if (expense.receipt === null) expense.receipt = "/images/no-image.png";
+        expense.date = expense.date.length > 10 ? `${expense.date.slice(0, 10)}` : expense.date;
+        return expense;
       });
-    console.log('results:  ', $scope.expenseList);
+      $scope.expenses = expenseList;
+    });
   };
 
 
-  // Get Expenses between 2 dates
-  $scope.searchExpenseDate = () => {
-    console.log('button pressed');
-    FBStorageFactory.getExpensesByDate()
-      .then(expenses => {
-        $scope.dateList = Object.values(expenses);
-        return $scope.dateList;
-      });
-    console.log('results:  ', $scope.dateList);
-  };
+//   // Get Expenses between 2 dates
+//   $scope.searchExpenseDate = () => {
+//     FBStorageFactory.getExpensesByDate($scope.expense)
+//       .then(expenses => {
+//         console.log('NEW LOG: ', expenses);
+//       });
+//   };
 
-  // Get Expenses between 2 dates that are tax writeoffs
-  $scope.searchExpenseWriteoffs = () => {
-    console.log('button pressed');
-    FBStorageFactory.getWriteOffs()
-      .then(expenses => {
-        $scope.writeOffList = Object.values(expenses);
-        return $scope.writeOffList;
-      });
-    console.log('results:  ', $scope.writeOffList);
-  };
+//   // Get Expenses between 2 dates that are tax writeoffs
+//   $scope.searchExpenseWriteoffs = () => {
+//     FBStorageFactory.getWriteOffs($scope.expense)
+//       .then(expenses => {
+//         console.log('NEW LOG: ', expenses);
+//       });
+//   };
 
-  // Get Expenses between 2 dates that are business expenses
-  $scope.searchExpenseWriteoffs = () => {
-    console.log('button pressed');
-    FBStorageFactory.getWriteOffs()
-      .then(expenses => {
-        $scope.writeOffList = Object.values(expenses);
-        return $scope.writeOffList;
-      });
-    console.log('results:  ', $scope.writeOffList);
-  };
+//   // Get Expenses between 2 dates that are business expenses
+//   $scope.searchExpenseWriteoffs = () => {
+//     FBStorageFactory.getWriteOffs($scope.expense)
+//       .then(expenses => {
+//         console.log('NEW LOG: ', expenses);
+//       });
+//   };
 
-  // Get Expenses between 2 dates that are business expenses
-  $scope.searchBusinessExpenses = () => {
-    console.log('button pressed');
-    FBStorageFactory.getBusiness()
-      .then(expenses => {
-        $scope.bizzList = Object.values(expenses);
-        return $scope.bizzList;
-      });
-    console.log('results:  ', $scope.bizzList);
-  };
+//   // Get Expenses between 2 dates that are business expenses
+//   $scope.searchBusinessExpenses = () => {
+//     FBStorageFactory.getBusiness($scope.expense)
+//       .then(expenses => {
+//         console.log('NEW LOG: ', expenses);
+//       });
+//   };
 
-  // Get Expenses between 2 dates that are business tax write-offs
-  $scope.searchBusinessWriteoffs = () => {
-    console.log('button pressed');
-    FBStorageFactory.getBizWrite()
-      .then(expenses => {
-        $scope.bizWriteList = Object.values(expenses);
-        return $scope.bizWriteList;
-      });
-    console.log('results:  ', $scope.bizWriteList);
-  };
+//   // Get Expenses between 2 dates that are business tax write-offs
+//   $scope.searchBusinessWriteoffs = () => {
+//     FBStorageFactory.getBizWrite($scope.expense)
+//       .then(expenses => {
+//         console.log('NEW LOG: ', expenses);
+//       });
+//   };
 
-  // Gets all category expenses between dates
-  $scope.searchExpCats = () => {
-    console.log('button pressed');
-    FBStorageFactory.getCategory()
-      .then(expenses => {
-        $scope.catList = Object.values(expenses);
-        return $scope.catList;
-      });
-    console.log('results:  ', $scope.catList);
-  };
+//   // Gets all category expenses between dates
+//   $scope.searchExpCats = () => {
+//     FBStorageFactory.getCategory($scope.expense)
+//       .then(expenses => {
+//         console.log('NEW LOG: ', expenses);
+//       });
+//   };
 
-  // Gets all user category expenses between dates + tax writeoffs
-  $scope.searchCatWriteOffs = () => {
-    console.log('button pressed');
-    FBStorageFactory.getCatWriteOff()
-      .then(expenses => {
-        $scope.catWriteList = Object.values(expenses);
-        return $scope.catWriteList;
-      });
-    console.log('results:  ', $scope.catWriteList);
-  };
+//   // Gets all user category expenses between dates + tax writeoffs
+//   $scope.searchCatWriteOffs = () => {
+//     FBStorageFactory.getCatWriteOff($scope.expense)
+//       .then(expenses => {
+//         console.log('NEW LOG: ', expenses);
+//       });
+//   };
 
-  // Gets all user expenses between dates by category that are business expenses
-  $scope.searchBizCats = () => {
-    console.log('button pressed');
-    FBStorageFactory.getBizCats()
-      .then(expenses => {
-        $scope.bizCatList = Object.values(expenses);
-        return $scope.bizCatList;
-      });
-    console.log('results:  ', $scope.bizCatList);
-  };
+//   // Gets all user expenses between dates by category that are business expenses
+//   $scope.searchBizCats = () => {
+//     FBStorageFactory.getBizCats($scope.expense)
+//       .then(expenses => {
+//         console.log('NEW LOG: ', expenses);
+//       });
+//   };
 
-  // Gets all user expenses between dates by category that are business writeoffs
-  $scope.searchBizWriteCats = () => {
-    console.log('button pressed');
-    FBStorageFactory.getBizWriteCats()
-      .then(expenses => {
-        $scope.bizCatWriteList = Object.values(expenses);
-        return $scope.bizCatWriteList;
-      });
-    console.log('results:  ', $scope.bizCatWriteList);
-  };
+//   // Gets all user expenses between dates by category that are business writeoffs
+//   $scope.searchBizWriteCats = () => {
+//     FBStorageFactory.getBizWriteCats($scope.expense)
+//       .then(expenses => {
+//         console.log('NEW LOG: ', expenses);
+//       });
+//   };
 });
-
 
 
 
