@@ -45,12 +45,15 @@ module.exports.getAllExpenses = (req, res, next) => {
 
 // GETS ALL USER EXPENSES
 let getBool = (req, res, next) => {
+  console.log("get bool getting called");
   const { Expense } = req.app.get('models');
+  let Op = sequelize.Op;  
   Expense.findAll({
     where: {
       user_id: req.user.id,
-      business: req.query.business,
-      writeoff: req.query.writeoff
+      date: { [Op.between]: [req.query.date1, req.query.date2] },
+      business: req.query.business == 'undefined' ? false : req.query.business,
+      writeoff: req.query.writeoff == 'undefined' ? false : req.query.writeoff
     }
   })
     .then(expenses => {
@@ -64,12 +67,13 @@ let getBool = (req, res, next) => {
 
 // GETS ALL USER EXPENSES between 2 selected dates
 let getDateExpenses = (req, res, next) => {
+  console.log("getDateExpenses getting called");
   const { Expense } = req.app.get('models');
   let Op = sequelize.Op;
   Expense.findAll({
     where: {
       user_id: req.user.id,
-      date: { [Op.between]: [req.query.date1, req.query.date2] },
+      date: { [Op.between]: [req.query.date1, req.query.date2] }
     }
   })
     .then(expenses => {
@@ -81,27 +85,30 @@ let getDateExpenses = (req, res, next) => {
     });
 };
 
-let getCategoryExpenses = (req, res, next) => {
-  const { Expense } = req.app.get('models');
-  // let Op = sequelize.Op;
-  Expense.findAll({
-    where: {
-      user_id: req.user.id,
-      category_id: req.query.category_id
-    }
-  })
-    .then(expenses => {
-      res.status(200).json(expenses);
-    })
-    .catch(err => {
-      console.log('Something went wrong', err);
-      res.status(500).json({ error: err });
-    });
-};
+// let getCategoryExpenses = (req, res, next) => {
+//   const { Expense } = req.app.get('models');
+//   let Op = sequelize.Op;
+//   Expense.findAll({
+//     where: {
+//       user_id: req.user.id,
+//       date: { [Op.between]: [req.query.date1, req.query.date2] },
+//       category_id: req.query.category_id
+//     }
+//   })
+//     .then(expenses => {
+//       res.status(200).json(expenses);
+//     })
+//     .catch(err => {
+//       console.log('Something went wrong', err);
+//       res.status(500).json({ error: err });
+//     });
+// };
 
 
 let getBizWriteCats = (req, res, next) => {
-  console.log("is getBizWriteCats getting called????");
+  console.log("getBizWriteCats getting called");
+  console.log('TRUE OR FALSE buesiness: ', req.query.business == 'undefined' ? false : req.query.business);
+  console.log('TRUE OR FALSE writeoff: ', req.query.writeoff == 'undefined' ? false : req.query.writeoff);
   const { Expense } = req.app.get('models');
   let Op = sequelize.Op;
   Expense.findAll({
@@ -109,8 +116,8 @@ let getBizWriteCats = (req, res, next) => {
       user_id: req.user.id,
       date: { [Op.between]: [req.query.date1, req.query.date2] },
       category_id: req.query.category_id,
-      business: req.query.business,
-      writeoff: req.query.writeoff
+      business: req.query.business == 'undefined' ? false : req.query.business,
+      writeoff: req.query.writeoff == 'undefined' ? false : req.query.writeoff
     }
   })
     .then(expenses => {
@@ -124,17 +131,23 @@ let getBizWriteCats = (req, res, next) => {
 
 // GETS ALL USER EXPENSES between 2 selected dates in a given category that are business tax write-offs
 module.exports.findExpense = (req, res, next) => {
+  // console.log(req.query.category_id !== 'undefined' ? true : false);
   console.log("req.query:  ", req.query);
-  if (req.user.id && req.query.date1 && req.query.date2 && req.query.category_id && req.query.business && req.query.writeoff) {
+  if (req.user.id && req.query.date1 && req.query.date2 && req.query.category_id != 'undefined' && (req.query.writeoff == 'true' || req.query.business == 'true')) {
+    //date, category, booleans
     getBizWriteCats(req, res, next);
-  } else if (req.user.id && req.query.date1 && req.query.date2 ) {
-    getDateExpenses(req, res, next);
-  } else if (req.user.id && req.query.category_id) {
-    getCategoryExpenses(req, res, next);
-  } else if (req.user_id && req.query.business && req.query.writeoff){
+  } else if (req.user.id && req.query.date1 && req.query.date2 && req.query.category_id == 'undefined' && (req.query.writeoff == 'true' || req.query.business == 'true')){
+    //dates, and one or both boolean
     getBool(req, res, next);
+  } else if (req.user.id && req.query.date1 && req.query.date2 && req.query.category_id == 'undefined' && req.query.writeoff == 'undefined' && req.query.business == 'undefined') {
+    //nothin but dates
+    getDateExpenses(req, res, next);
+  } else if(req.user.id && req.query.date1 && req.query.date2 && req.query.category_id != 'undefined' && req.query.writeoff == 'undefined' && req.query.business == 'undefined'){
+    // dates and categories
+    getCategory(req, res, next);
   } else {
-    console.log('NEEEEWP');
+    getBizWriteCats(req, res, next);
+    console.log('calling getBizWriteCats 2');
   }  
 };  
 
@@ -205,24 +218,25 @@ module.exports.findExpense = (req, res, next) => {
 
 
 // // GETS ALL USER EXPENSES between 2 selected dates in a given category
-// let getCategory = (req, res, next) => {
-//   const { Expense } = req.app.get('models');
-//   let Op = sequelize.Op;
-//   Expense.findAll({
-//     where: {
-//       user_id: req.user.id,
-//       date: { [Op.between]: [req.query.date1, req.query.date2] },
-//       category_id: req.query.category_id
-//     }
-//   })
-//     .then(expenses => {
-//       res.status(200).json(expenses);
-//     })
-//     .catch(err => {
-//       console.log('Something went wrong', err);
-//       res.status(500).json({ error: err });
-//     });
-// };
+let getCategory = (req, res, next) => {
+  console.log("getCategory is being called");
+  const { Expense } = req.app.get('models');
+  let Op = sequelize.Op;
+  Expense.findAll({
+    where: {
+      user_id: req.user.id,
+      date: { [Op.between]: [req.query.date1, req.query.date2] },
+      category_id: req.query.category_id
+    }
+  })
+    .then(expenses => {
+      res.status(200).json(expenses);
+    })
+    .catch(err => {
+      console.log('Something went wrong', err);
+      res.status(500).json({ error: err });
+    });
+};
 
 // GETS ALL USER EXPENSES between 2 selected dates in a given category that are tax write-offs
 // let getCatWriteOff = (req, res, next) => {

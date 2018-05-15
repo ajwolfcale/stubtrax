@@ -56,7 +56,8 @@ form{
 .navbar-light .navbar-toggler {
   color: black;
   background: #FEB15F;
-  box-shadow: 1px 1px 7px 2px #1B5F5E;
+  border: .5px solid black;
+  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.603);
   margin-right: .5em;
 }
 
