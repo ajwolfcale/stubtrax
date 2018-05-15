@@ -19,17 +19,11 @@ angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $q, $locat
   
   $scope.uploadPic = function (file) {
     storageRef = firebase.storage().ref(file.name);
-    FBStorageFactory.pushImage(file);
-    console.log("FILE NAME: ", file.name);
-    
-    return $q(function (resolve, reject) {
-      storageRef.getDownloadURL().then(function (url) {
-        setTimeout(function () {
-          console.log('firebase URL:  ', url);
-          $scope.receiptUrl = url;
-        }, 5000);
-      });
-    }).then(() => {
+    FBStorageFactory.pushImage(file).then(function () {
+      console.log("FILE NAME: ", file.name);
+      return storageRef.getDownloadURL();
+    }).then((url) => {
+      $scope.receiptUrl = url;
       $scope.newExpense = {
         writeoff: false,
         business: false,
@@ -40,6 +34,8 @@ angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $q, $locat
         user_id: currentUserId,
         category_id: ""
       };
+    }).catch(function (err) {
+      console.log("ERROR", err);
     });
   }; 
 
