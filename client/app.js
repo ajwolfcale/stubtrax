@@ -3,7 +3,7 @@
 angular.module("Stubtrax", ['ngRoute', 'ngFileUpload'])
   .config($routeProvider => {
     $routeProvider
-      .when("/welcome", {
+      .when("/", {
         templateUrl: "partials/welcome.html",
         controller: "WelcomeCtrl"
       })

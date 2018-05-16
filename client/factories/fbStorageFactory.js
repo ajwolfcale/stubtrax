@@ -7,7 +7,7 @@ angular
     let storage = firebase.storage();
     let pushImage = (file) => {
       let storageRef = storage.ref(file.name);
-      storageRef.put(file);
+      return storageRef.put(file);
     };
 
     // *+*+*+*+*+*+*+* SERVER CALL TO ADD EXPENSES *+*+*+*+*+*+*+*
@@ -16,7 +16,6 @@ angular
       return $http.post(`/add-expense`, expense)
         .then(console.log(expense));
     };
-
 
     // *+*+*+*+*+*+*+* SERVER CALLS TO GET EXPENSES *+*+*+*+*+*+*+*
 
@@ -34,13 +33,14 @@ angular
       });
     };
 
-    // Gets all user expenses between dates
-    let getExpensesByDate = (expense) => {
+
+    // *+*+*+*+*+*+*+* SERVER CALLS TO DELETE EXPENSES *+*+*+*+*+*+*+*
+    let deleteOneExpense = (expense) => {
       return $q(function (resolve, reject) {
-        $http.get('/getDateExpenses', expense)
+        $http.get('/deleteExpense', expense)
           .then(function (expense) {
             resolve(expense);
-            console.log('DATA : ', expense);
+            console.log('EXPENSE DELETED : ', expense);
           })
           .catch(function (error) {
             reject(error);
@@ -49,122 +49,30 @@ angular
     };
 
 
-    // Gets all user expenses between dates
-    let getWriteOffs = (expense) => {
+    // Gets all user filter requests and passes request to server 
+    let findExpense = (expense) => {
       return $q(function (resolve, reject) {
-        $http.get('/getWriteOffs', expense)
-          .then(function (expense) {
-            resolve(expense);
-            console.log('DATA : ', expense);
+        let noTimeDate1 = expense.date1.toUTCString();
+        let noTimeDate2 = expense.date2.toUTCString();
+        console.log("are you there?");
+        $http.get(`/findExpense?date1=${noTimeDate1}&date2=${noTimeDate2}&category_id=${expense.category_id}&business=${expense.business}&writeoff=${expense.writeoff}`)
+          .then(function (expenses) {
+            console.log('DATA : ', expenses);
+            resolve(expenses);
           })
           .catch(function (error) {
             reject(error);
           });
       });
     };
-
-    // Gets all user business expenses between dates
-    let getBusiness = (expense) => {
-      return $q(function (resolve, reject) {
-        $http.get('/getBusiness', expense)
-          .then(function (expense) {
-            resolve(expense);
-            console.log('DATA : ', expense);
-          })
-          .catch(function (error) {
-            reject(error);
-          });
-      });
-    };
-
-    // Gets all user business write-offs between dates
-    let getBizWrite = (expense) => {
-      return $q(function (resolve, reject) {
-        $http.get('/getBizWrite', expense)
-          .then(function (expense) {
-            resolve(expense);
-            console.log('DATA : ', expense);
-          })
-          .catch(function (error) {
-            reject(error);
-          });
-      });
-    };
-
-    // Gets all user business expenses between dates by category
-    let getCategory = (expense) => {
-      return $q(function (resolve, reject) {
-        $http.get('/getCategory', expense)
-          .then(function (expense) {
-            resolve(expense);
-            console.log('DATA : ', expense);
-          })
-          .catch(function (error) {
-            reject(error);
-          });
-      });
-    };
-
-    // Gets all user expenses between dates by category that are tax write-offs
-    let getCatWriteOff = (expense) => {
-      return $q(function (resolve, reject) {
-        $http.get('/getCatWriteOff', expense)
-          .then(function (expense) {
-            resolve(expense);
-            console.log('DATA : ', expense);
-          })
-          .catch(function (error) {
-            reject(error);
-          });
-      });
-    };
-
-    // Gets all user expenses between dates by category that are business expenses
-    let getBizCats = (expense) => {
-      return $q(function (resolve, reject) {
-        $http.get('/getBizCats', expense)
-          .then(function (expense) {
-            resolve(expense);
-            console.log('DATA : ', expense);
-          })
-          .catch(function (error) {
-            reject(error);
-          });
-      });
-    };
-
-    // Gets all user expenses between dates by category that are business writeoffs
-    let getBizWriteCats = (expense) => {
-      return $q(function (resolve, reject) {
-        $http.get('/getBizWriteCats', expense)
-          .then(function (expense) {
-            resolve(expense);
-            console.log('DATA : ', expense);
-          })
-          .catch(function (error) {
-            reject(error);
-          });
-      });
-    };
-
-
+    
     return { 
       pushImage, 
       sendExpense, 
       getAllUserExpenses,
-      getExpensesByDate,
-      getWriteOffs,
-      getBusiness,
-      getBizWrite,
-      getCategory,
-      getCatWriteOff,
-      getBizCats,
-      getBizWriteCats
+      findExpense,
+      deleteOneExpense
     };
-
-
-
+    
   });
-
-
-
+    
