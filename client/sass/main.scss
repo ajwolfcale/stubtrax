@@ -90,25 +90,6 @@ background: white;
   padding: 5px;
 }
 
-// .expenseCard{
-//   min-width: 22em;
-//   max-width: 35em;
-//   min-height:12em;
-//   max-height:14em;
-//   flex-basis: 30%;
-//   text-align: left;
-//   margin-top: 15px;
-//   padding: 12px;
-//   position: relative;
-//   background: rgb(255, 255, 255);
-//   border: 4px ridge rgb(128, 128, 128);
-//   box-shadow: 1px 7px 8px -4px rgb(26, 26, 26);
-//   border-radius: 15px;
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: nowrap;
-//   justify-content: space-between;
-// }
 .card-border{
   border: 4px ridge rgb(128, 128, 128);
   margin: 10px;
@@ -141,9 +122,6 @@ background: white;
   max-width: 300px;
   
 }
-// .card-label{
-//   border-bottom: 1px solid rgb(143, 142, 142);  
-// }
 
 .card-merchant{
   border-bottom: 1px solid rgb(143, 142, 142);  
@@ -159,6 +137,7 @@ background: white;
   margin-top:10px;
   margin-left: -25px;
 }
+
 .card-image{
   max-height: 180px;
   max-width: 90px;
@@ -174,7 +153,6 @@ form{
   padding: 10px;
   color: black;
 }
-
 
 // */*/*/*/*/* Receipt Image Page */*/*/*/*/*
 
@@ -192,6 +170,38 @@ form{
   position: relative;
   top: 7px;
 }
+
+
+// */*/*/*/*/* Receipt Search Page */*/*/*/*/*
+.check-div{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.check-box{
+  margin: 10px;
+  padding-left: -5px;
+  width: 45%;
+  border-right: 2px;
+  border-bottom: 2px;
+  border-top: 0px;
+  border-left: 0px;
+  border-color: black;
+  border-style: outset;
+  
+}
+.form-check-label {
+  margin-bottom: 0;
+  padding-left: 5px;
+}
+.form-check-input {
+  position: absolute;
+  margin-top: .3rem;
+  margin-left: -.85rem;
+}
+
+// BUTTONS
 
 .receiptBtn {
   background-color: #DA4531;
@@ -215,41 +225,10 @@ form{
   }
 }
 
-// */*/*/*/*/* Receipt Search Page */*/*/*/*/*
-.check-div{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-}
-
-.check-box{
-  margin: 10px;
-  padding-left: -5px;
-  width: 45%;
-  border-right: 2px;
-  border-bottom: 2px;
-  border-top: 0px;
-  border-left: 0px;
-  border-color: black;
-  border-style: outset;
-
-}
-.form-check-label {
-  margin-bottom: 0;
-  padding-left: 5px;
-}
-.form-check-input {
-  position: absolute;
-  margin-top: .3rem;
-  margin-left: -.85rem;
-}
-
-// BUTTONS
 .delete-div{
-height: .5em;
+  height: .5em;
 display: flex;
 }
-
 
 .btn-outline-danger {
   color: #DA4531;

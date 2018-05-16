@@ -135,25 +135,6 @@ form {
   position: relative;
   top: 7px; }
 
-.receiptBtn {
-  background-color: #DA4531;
-  cursor: pointer;
-  display: inline-block;
-  padding: 0.5em 0.9em;
-  border: 0.16em solid #d6c4c4;
-  border-radius: 0.3em;
-  box-sizing: border-box;
-  text-decoration: none;
-  font-family: 'Josefin Sans', sans-serif;
-  font-weight: 300;
-  color: #FFFFFF;
-  text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.85);
-  text-align: center;
-  transition: all 0.2s; }
-  .receiptBtn:hover {
-    background-color: #e45643;
-    border: 0.16em solid #FEB15F; }
-
 .check-div {
   display: flex;
   flex-direction: row;
@@ -178,6 +159,25 @@ form {
   position: absolute;
   margin-top: .3rem;
   margin-left: -.85rem; }
+
+.receiptBtn {
+  background-color: #DA4531;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.5em 0.9em;
+  border: 0.16em solid #d6c4c4;
+  border-radius: 0.3em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  color: #FFFFFF;
+  text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.85);
+  text-align: center;
+  transition: all 0.2s; }
+  .receiptBtn:hover {
+    background-color: #e45643;
+    border: 0.16em solid #FEB15F; }
 
 .delete-div {
   height: .5em;
