@@ -5,9 +5,9 @@ angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $q, $locat
   let currentUserId = null;
   
   $scope.$on("handleBroadcast", function(event, user) {
-    console.log("handleBroadcast called in expenseCtrl", user);
+    // console.log("handleBroadcast called in expenseCtrl", user);
     currentUserId = user.id;
-    console.log("Current user in expenseCtrl", currentUserId);
+    // console.log("Current user in expenseCtrl", currentUserId);
   });
 
   $scope.go = function ( path ) {
@@ -20,7 +20,7 @@ angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $q, $locat
   $scope.uploadPic = function (file) {
     storageRef = firebase.storage().ref(file.name);
     FBStorageFactory.pushImage(file).then(function () {
-      console.log("FILE NAME: ", file.name);
+      // console.log("FILE NAME: ", file.name);
       return storageRef.getDownloadURL();
     }).then((url) => {
       $scope.receiptUrl = url;
@@ -41,12 +41,11 @@ angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $q, $locat
 
   $scope.addExpense = () => {
     $scope.newExpense.receipt = $scope.receiptUrl;
-    // console.log("NEW EXPENSE  :", $scope.newExpense);
     FBStorageFactory.sendExpense($scope.newExpense);
   };
 
   $scope.loadAllExpenses = () => {
-    console.log("button press", $scope.expense);
+    // console.log("button press", $scope.expense);
     FBStorageFactory.getAllUserExpenses($scope.expense).then(expenses => {
       const expenseList = expenses.data.map(expense => {
         if (expense.receipt === null) expense.receipt = "/images/no-image.png";
@@ -59,7 +58,7 @@ angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $q, $locat
 
   // All Expenses by User Id
   $scope.searchForExpenses = () => {
-    console.log("button press", $scope.expense);
+    // console.log("button press", $scope.expense);
     FBStorageFactory.findExpense($scope.expense).then(expenses => {
       const expenseList = expenses.data.map(expense => {
         if (expense.receipt === null) expense.receipt = "/images/no-image.png";
@@ -70,7 +69,7 @@ angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $q, $locat
     });
   };
 
-  //DELETES AN EXPENSE
+  //TODO: DELETES AN EXPENSE
   $scope.deleteSelected = () => {
     console.log('pressed the delete button', $scope.expense);
     FBStorageFactory.deleteOneExpense($scope.expense);

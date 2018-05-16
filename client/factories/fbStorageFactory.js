@@ -12,7 +12,7 @@ angular
 
     // *+*+*+*+*+*+*+* SERVER CALL TO ADD EXPENSES *+*+*+*+*+*+*+*
     let sendExpense = (expense) => {
-      console.log("Expense Factory:  ", expense);
+      // console.log("Expense Factory:  ", expense);
       return $http.post(`/add-expense`, expense)
         .then(console.log(expense));
     };
@@ -25,7 +25,7 @@ angular
         $http.get('/getAllExpenses', expense)
           .then(function (expense) {
             resolve(expense);
-            console.log('DATA : ', expense);
+            // console.log('DATA : ', expense);
           })
           .catch(function (error) {
             reject(error);
@@ -40,7 +40,7 @@ angular
         $http.get('/deleteExpense', expense)
           .then(function (expense) {
             resolve(expense);
-            console.log('EXPENSE DELETED : ', expense);
+            // console.log('EXPENSE DELETED : ', expense);
           })
           .catch(function (error) {
             reject(error);
@@ -57,7 +57,7 @@ angular
         console.log("are you there?");
         $http.get(`/findExpense?date1=${noTimeDate1}&date2=${noTimeDate2}&category_id=${expense.category_id}&business=${expense.business}&writeoff=${expense.writeoff}`)
           .then(function (expenses) {
-            console.log('DATA : ', expenses);
+            // console.log('DATA : ', expenses);
             resolve(expenses);
           })
           .catch(function (error) {

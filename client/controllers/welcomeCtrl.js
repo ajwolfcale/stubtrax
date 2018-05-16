@@ -4,7 +4,7 @@ angular.module("Stubtrax").controller("WelcomeCtrl", function($scope, AuthFactor
   $scope.logout = () => {
     console.log("scope account?", $scope.account);
     AuthFactory.logoutUser($scope.account).then((user) => {
-      console.log("logged out", user);
+      // console.log("logged out", user);
       $location.path("/");
     });
   };

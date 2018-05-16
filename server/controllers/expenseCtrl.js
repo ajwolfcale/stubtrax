@@ -112,7 +112,6 @@ let getBizWriteCats = (req, res, next) => {
 
 // GETS ALL USER EXPENSES between 2 selected dates in a given category that are business tax write-offs
 module.exports.findExpense = (req, res, next) => {
-  // console.log(req.query.category_id !== 'undefined' ? true : false);
   console.log("req.query:  ", req.query);
   if (req.user.id && req.query.date1 && req.query.date2 && req.query.category_id != 'undefined' && (req.query.writeoff == 'true' || req.query.business == 'true')) {
     //date, category, booleans

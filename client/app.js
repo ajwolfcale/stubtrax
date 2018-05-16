@@ -1,5 +1,4 @@
 "use strict";
-// 'ui.bootstrap'
 angular.module("Stubtrax", ['ngRoute', 'ngFileUpload'])
   .config($routeProvider => {
     $routeProvider
@@ -36,7 +35,7 @@ angular
   .run(($rootScope, $location, $route, $window, AuthFactory) => {
     $rootScope.$on("$routeChangeStart", function() {
       AuthFactory.setUserStatus().then(() => {
-        console.log("user", AuthFactory.getCurrentUser());
+        // console.log("user", AuthFactory.getCurrentUser());
         AuthFactory.broadcastUserLogin(AuthFactory.getCurrentUser());
       });
     });
