@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $q, $location, FBStorageFactory) {
+angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $q, $route, $location, FBStorageFactory) {
   
   let currentUserId = null;
   
@@ -69,10 +69,20 @@ angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $q, $locat
     });
   };
 
-  //TODO: DELETES AN EXPENSE
-  $scope.deleteSelected = () => {
-    console.log('pressed the delete button', $scope.expense);
-    FBStorageFactory.deleteOneExpense($scope.expense);
+  //DELETES AN EXPENSE
+  $scope.expensesDeleter= (expense_id) => {
+    FBStorageFactory.deleteOneExpense(expense_id)
+      .then(() => {
+        $route.reload("/#!/expense-search");
+      });
+  };
+
+  //DELETES AN EXPENSE
+  $scope.expensesUpdater = (expense_id) => {
+    FBStorageFactory.changeAnExpense(expense_id)
+      .then(() => {
+        $route.reload("/#!/expense-search");
+      });
   };
 
 });

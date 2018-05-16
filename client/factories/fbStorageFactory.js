@@ -33,20 +33,32 @@ angular
       });
     };
 
-
-    // *+*+*+*+*+*+*+* SERVER CALLS TO DELETE EXPENSES *+*+*+*+*+*+*+*
-    let deleteOneExpense = (expense) => {
+    // *+*+*+*+*+*+*+* SERVER CALL TO DELETE EXPENSES *+*+*+*+*+*+*+*
+    let deleteOneExpense = (expense_id) => {
       return $q(function (resolve, reject) {
-        $http.get('/deleteExpense', expense)
-          .then(function (expense) {
-            resolve(expense);
-            // console.log('EXPENSE DELETED : ', expense);
+        $http
+          .get(`/deleteExpense/${expense_id}`)
+          .then((data) => {
+            resolve(data);
           })
-          .catch(function (error) {
-            reject(error);
+          .catch((err) => {
+            reject(err);
           });
       });
     };
+
+    // *+*+*+*+*+*+*+* SERVER CALL TO UPDATE EXPENSES *+*+*+*+*+*+*+*
+    // let changeAnExpense = (expense_id) => {
+    //   return $q(function (resolve, reject) {
+    //     $http
+    //         .patch(`updateExpense/${expense_id}`)
+    //         .then((data) => {
+    //             resolve(data);
+    //         })
+    //         .catch((err) => {
+    //             reject(err);
+    //         });
+    // };
 
 
     // Gets all user filter requests and passes request to server 
@@ -72,6 +84,7 @@ angular
       getAllUserExpenses,
       findExpense,
       deleteOneExpense
+      // changeAnExpense
     };
     
   });

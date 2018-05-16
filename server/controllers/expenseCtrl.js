@@ -168,3 +168,18 @@ module.exports.deleteExpense = (req, res, next) => {
       res.status(500).json({ error: err });
     });
 };
+
+// UPDATE EXPENSE:
+// module.exports.updateExpense = (req, res, next) => {
+//   const { Expense } = req.app.get('models');
+//   Expense.destroy({
+//     where: { id: req.params.id }
+//   })
+//     .then(expense => {
+//       res.status(200).json(expense);
+//     })
+//     .catch(err => {
+//       console.log('There has been an ERROR', err);
+//       res.status(500).json({ error: err });
+//     });
+// };
