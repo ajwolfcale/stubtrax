@@ -85,25 +85,6 @@ let getDateExpenses = (req, res, next) => {
     });
 };
 
-// let getCategoryExpenses = (req, res, next) => {
-//   const { Expense } = req.app.get('models');
-//   let Op = sequelize.Op;
-//   Expense.findAll({
-//     where: {
-//       user_id: req.user.id,
-//       date: { [Op.between]: [req.query.date1, req.query.date2] },
-//       category_id: req.query.category_id
-//     }
-//   })
-//     .then(expenses => {
-//       res.status(200).json(expenses);
-//     })
-//     .catch(err => {
-//       console.log('Something went wrong', err);
-//       res.status(500).json({ error: err });
-//     });
-// };
-
 
 let getBizWriteCats = (req, res, next) => {
   console.log("getBizWriteCats getting called");
@@ -152,71 +133,6 @@ module.exports.findExpense = (req, res, next) => {
 };  
 
 
-
-// GETS ALL USER EXPENSES between 2 selected dates that are tax write-offs
-// let getWriteOffs = (req, res, next) => {
-//   const { Expense } = req.app.get('models');
-//   let Op = sequelize.Op;
-//   Expense.findAll({
-//     where: {
-//       user_id: req.user.id,
-//       date: { [Op.between]: [req.query.date1, req.query.date2] },
-//       writeoff: req.query.writeoff
-//     }
-//   })
-//     .then(expenses => {
-//       res.status(200).json(expenses);
-//     })
-//     .catch(err => {
-//       console.log('Something went wrong', err);
-//       res.status(500).json({ error: err });
-//     });
-// };
-
-
-// GETS ALL USER EXPENSES between 2 selected dates that are tax business expenses
-// let getBusiness = (req, res, next) => {
-//   const { Expense } = req.app.get('models');
-//   let Op = sequelize.Op;
-//   Expense.findAll({
-//     where: {
-//       user_id: req.user.id,
-//       date: { [Op.between]: [req.query.date1, req.query.date2] },
-//       business: req.query.business,
-//     }
-//   })
-//     .then(expenses => {
-//       res.status(200).json(expenses);
-//     })
-//     .catch(err => {
-//       console.log('Something went wrong', err);
-//       res.status(500).json({ error: err });
-//     });
-// };
-
-// // GETS ALL USER EXPENSES between 2 selected dates that are tax business tax write-offs
-// let getBizWrite = (req, res, next) => {
-//   const { Expense } = req.app.get('models');
-//   let Op = sequelize.Op;
-//   Expense.findAll({
-//     where: {
-//       user_id: req.user.id,
-//       date: { [Op.between]: [req.query.date1, req.query.date2] },
-//       business: req.query.business,
-//       writeoff: req.query.writeoff
-//     }
-//   })
-//     .then(expenses => {
-//       res.status(200).json(expenses);
-//     })
-//     .catch(err => {
-//       console.log('Something went wrong', err);
-//       res.status(500).json({ error: err });
-//     });
-// };
-
-
-
 // // GETS ALL USER EXPENSES between 2 selected dates in a given category
 let getCategory = (req, res, next) => {
   console.log("getCategory is being called");
@@ -238,44 +154,18 @@ let getCategory = (req, res, next) => {
     });
 };
 
-// GETS ALL USER EXPENSES between 2 selected dates in a given category that are tax write-offs
-// let getCatWriteOff = (req, res, next) => {
-//   const { Expense } = req.app.get('models');
-//   let Op = sequelize.Op;
-//   Expense.findAll({
-//     where: {
-//       user_id: req.user.id,
-//       date: { [Op.between]: [req.query.date1, req.query.date2] },
-//       category_id: req.query.category_id,
-//       writeoff: req.query.writeoff
-//     }
-//   })
-//     .then(expenses => {
-//       res.status(200).json(expenses);
-//     })
-//     .catch(err => {
-//       console.log('Something went wrong', err);
-//       res.status(500).json({ error: err });
-//     });
-// };
 
-// GETS ALL USER EXPENSES between 2 selected dates in a given category that are business expenses
-// let getBizCats = (req, res, next) => {
-//   const { Expense } = req.app.get('models');
-//   let Op = sequelize.Op;
-//   Expense.findAll({
-//     where: {
-//       user_id: req.user.id,
-//       date: { [Op.between]: [req.query.date1, req.query.date2] },
-//       category_id: req.query.category_id,
-//       business: req.query.business
-//     }
-//   })
-//     .then(expenses => {
-//       res.status(200).json(expenses);
-//     })
-//     .catch(err => {
-//       console.log('Something went wrong', err);
-//       res.status(500).json({ error: err });
-//     });
-// };
+// DELETE EXPENSE:
+module.exports.deleteExpense = (req, res, next) => {
+  const { Expense } = req.app.get('models');
+  Expense.destroy({
+    where: { id: req.params.id }
+  })
+    .then(expense => {
+      res.status(200).json(expense);
+    })
+    .catch(err => {
+      console.log('There has been an ERROR', err);
+      res.status(500).json({ error: err });
+    });
+};

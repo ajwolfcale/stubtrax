@@ -109,18 +109,61 @@ background: white;
 //   flex-wrap: nowrap;
 //   justify-content: space-between;
 // }
-
-.card{
-  margin: 10px;
+.card-border{
   border: 4px ridge rgb(128, 128, 128);
+  margin: 10px;
   box-shadow: 1px 7px 8px -4px rgb(26, 26, 26);
   border-radius: 8px;
+  min-width: 350px;
+  max-width: 350px;
 }
-.card-img-top{
-  max-height: 20em;
-  max-width: 10em;
+.card-container{
+  font-family: 'Josefin Sans', sans-serif;    
+  padding: 0px;
+  margin: 10px;
+  margin-bottom: 2px;
+  border-bottom: .5px solid rgb(165, 164, 164);  
+  max-height: 200px;
+  min-height: 200px;
+  min-width: 320px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+.card-buttons{
+  margin: 10px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  min-width: 300px;
+  max-width: 300px;
+  
+}
+// .card-label{
+//   border-bottom: 1px solid rgb(143, 142, 142);  
+// }
+
+.card-merchant{
+  border-bottom: 1px solid rgb(143, 142, 142);  
 }
 
+.row{
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-deets{
+  font-family: 'Josefin Sans', sans-serif;   
+  margin-top:10px;
+  margin-left: -25px;
+}
+.card-image{
+  max-height: 180px;
+  max-width: 90px;
+  margin-right: -25px;
+}
 
 form{
   font-family: 'Josefin Sans', sans-serif;  
@@ -189,8 +232,7 @@ form{
   border-left: 0px;
   border-color: black;
   border-style: outset;
-  // border-radius: 15px;
-  // background: rgba(255, 255, 255, 0.924);
+
 }
 .form-check-label {
   margin-bottom: 0;
@@ -213,10 +255,18 @@ display: flex;
   color: #DA4531;
   background-color: transparent;
   border-color: #DA4531;
+  margin-left: 5px;
 }
 
 .btn-outline-danger:hover {
   color: #fff;
   background-color: #DA4531;
   border-color: #DA4531;
+}
+
+.btn-outline-info {
+  color: rgba(88, 107, 100, 0.897);
+  background-color: transparent;
+  border-color: #B2D0C6;
+  margin-right: -15px;
 }

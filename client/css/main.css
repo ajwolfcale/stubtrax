@@ -65,15 +65,53 @@ form {
   justify-content: space-evenly;
   padding: 5px; }
 
-.card {
-  margin: 10px;
+.card-border {
   border: 4px ridge gray;
+  margin: 10px;
   box-shadow: 1px 7px 8px -4px #1a1a1a;
-  border-radius: 8px; }
+  border-radius: 8px;
+  min-width: 350px;
+  max-width: 350px; }
 
-.card-img-top {
-  max-height: 20em;
-  max-width: 10em; }
+.card-container {
+  font-family: 'Josefin Sans', sans-serif;
+  padding: 0px;
+  margin: 10px;
+  margin-bottom: 2px;
+  border-bottom: 0.5px solid #a5a4a4;
+  max-height: 200px;
+  min-height: 200px;
+  min-width: 320px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around; }
+
+.card-buttons {
+  margin: 10px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  min-width: 300px;
+  max-width: 300px; }
+
+.card-merchant {
+  border-bottom: 1px solid #8f8e8e; }
+
+.row {
+  display: flex;
+  justify-content: space-between; }
+
+.card-deets {
+  font-family: 'Josefin Sans', sans-serif;
+  margin-top: 10px;
+  margin-left: -25px; }
+
+.card-image {
+  max-height: 180px;
+  max-width: 90px;
+  margin-right: -25px; }
 
 form {
   font-family: 'Josefin Sans', sans-serif;
@@ -148,9 +186,16 @@ form {
 .btn-outline-danger {
   color: #DA4531;
   background-color: transparent;
-  border-color: #DA4531; }
+  border-color: #DA4531;
+  margin-left: 5px; }
 
 .btn-outline-danger:hover {
   color: #fff;
   background-color: #DA4531;
   border-color: #DA4531; }
+
+.btn-outline-info {
+  color: rgba(88, 107, 100, 0.897);
+  background-color: transparent;
+  border-color: #B2D0C6;
+  margin-right: -15px; }

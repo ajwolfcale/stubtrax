@@ -17,7 +17,6 @@ angular
         .then(console.log(expense));
     };
 
-
     // *+*+*+*+*+*+*+* SERVER CALLS TO GET EXPENSES *+*+*+*+*+*+*+*
 
     // Gets all user expenses
@@ -33,6 +32,22 @@ angular
           });
       });
     };
+
+
+    // *+*+*+*+*+*+*+* SERVER CALLS TO DELETE EXPENSES *+*+*+*+*+*+*+*
+    let deleteOneExpense = (expense) => {
+      return $q(function (resolve, reject) {
+        $http.get('/deleteExpense', expense)
+          .then(function (expense) {
+            resolve(expense);
+            console.log('EXPENSE DELETED : ', expense);
+          })
+          .catch(function (error) {
+            reject(error);
+          });
+      });
+    };
+
 
     // Gets all user filter requests and passes request to server 
     let findExpense = (expense) => {
@@ -55,7 +70,8 @@ angular
       pushImage, 
       sendExpense, 
       getAllUserExpenses,
-      findExpense
+      findExpense,
+      deleteOneExpense
     };
     
   });

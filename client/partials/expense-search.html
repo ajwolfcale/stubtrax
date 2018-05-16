@@ -70,21 +70,27 @@
 
 <div ng-init="loadAllExpenses()" class="container">
   <div class="row">
-  <div class="card col-sm-3" style="width: 18rem;" ng-repeat="expense in expenses">
-    <img class="card-img-top" ng-src={{expense.receipt}} alt="picture of receipt">
-    <div class="card-body">
-      <h5 class="card-title">{{expense.merchant}}</h5>
-      <p class="card-text">{{expense.notes}}</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">${{expense.total}}</li>
-      <li class="list-group-item">{{expense.date}}</li>
-    </ul>
-    <div class="card-body">
-      <button class="btn btn-outline-danger">X</button>
-      <button class="btn btn-outline-danger">Edit</button>
+    <div class="card-border" ng-repeat="expense in expenses">
+      <div class="card-container">
+        <div class="card-deets">
+          <h3 class="card-merchant">{{expense.merchant}}</h3>
+          <p class="card-notes">{{expense.notes}}</p>
+          <h5 class="card-date">{{expense.date}}</h5>
+          <label>Total</label>
+          <h5 class="card-total">${{expense.total}}</h5>
+        </div>
+
+        <div class="img-holder">
+          <img class="card-image" ng-src="images/login-stub.jpg" alt="picture of receipt">
+          <!-- <img class="card-image" ng-src={{expense.receipt}} alt="picture of receipt"> -->
+        </div>
+      </div>
+
+      <div class="card-buttons">
+        <button ng-click="deleteSelected()" class="btn btn-outline-danger">X</button>
+        <button class="btn btn-outline-info">Edit</button>
+      </div>
+
     </div>
   </div>
 </div>
-</div>
-
