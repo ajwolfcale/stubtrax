@@ -8,13 +8,19 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#!/login">Login</a>
+        <a class="nav-link" ng-show="isLoggedIn()" href="#!/expense">New Expense</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#!/expense">New Expense</a>
+        <a class="nav-link" ng-show="isLoggedIn()" href="#!/expense-search">My Expenses</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#!/expense-search">My Expenses</a>
-      </li>
+      <li ng-show="!isLoggedIn()" class="nav-item">
+          <a class="nav-link" href="#!/login">Login</a>
+        </li>
+        <li ng-show="isLoggedIn()" class="nav-item">
+            <a ng-click="logout()" class="nav-link" href="#!/login">Logout</a>
+        </li>
+
+      </ul>
   </div>
 </nav>
+

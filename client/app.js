@@ -1,10 +1,22 @@
 "use strict";
+
+let isAuth = AuthFactory => {
+  return new Promise((resolve, reject) => {
+    let userExistence = AuthFactory.getCurrentUser();
+    if (userExistence) {
+      resolve();
+    } else {
+      reject();
+    }
+  });
+}; 
+
 angular.module("Stubtrax", ['ngRoute', 'ngFileUpload'])
   .config($routeProvider => {
     $routeProvider
       .when("/", {
         templateUrl: "partials/welcome.html",
-        controller: "WelcomeCtrl"
+        controller: "ExpenseCtrl"
       })
       .when("/login", {
         templateUrl: "partials/login.html",
@@ -16,15 +28,18 @@ angular.module("Stubtrax", ['ngRoute', 'ngFileUpload'])
       })
       .when("/expense", {
         templateUrl: "partials/expense.html",
-        controller: "ExpenseCtrl"
+        controller: "ExpenseCtrl",
+        // resolve: {isAuth}
       })
       .when("/expense-search", {
         templateUrl: "partials/expense-search.html",
         controller: "ExpenseCtrl"
+        // resolve: {isAuth}
       })
       .when("/update-expense", {
         templateUrl: "partials/update.html",
         controller: "ExpenseCtrl"
+        // resolve: {isAuth}
       })
       .otherwise("/");
   })

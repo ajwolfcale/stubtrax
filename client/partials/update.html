@@ -1,28 +1,14 @@
 <header>
-  <div ng-include="'partials/navBar.html'"></div>
-</header>
+    <div ng-include="'partials/navBar.html'"></div>
+  </header>
+  
 
+  
 <h2>edit this expense</h2>
-<!-- <div class="card-border" ng-repeat="expense in expenses">
-      <div class="card-container">
-        <div class="card-deets">
-          <h3 class="card-merchant">{{expense.merchant}}</h3>
-          <p class="card-notes">{{expense.notes}}</p>
-          <h5 class="card-date">{{expense.date}}</h5>
-          <label>Total</label>
-          <h5 class="card-total">${{expense.total}}</h5>
-        </div>
-
-        <div class="img-holder">
-          <img class="card-image" ng-src="images/login-stub.jpg" alt="picture of receipt">
-          <!-- <img class="card-image" ng-src={{expense.receipt}} alt="picture of receipt"> -->
-<!-- </div>
-      </div>  -->
 
 <div class="form-div">
-  <div name="myForm" >
-      
-  <!-- <form name="myForm" action=`/updateExpense/${expense.id}?_method=PUT`, method="POST"> -->
+  <div name="editer myForm" >
+  <form name="myForm" action="/updateExpense/{{expense_id}}", method="POST">
     <fieldset>
       <div class="form-group">
         <label>Date*</label>
@@ -94,6 +80,6 @@
       <!-- <input name="user_id" ng-model="newerExpense.user_id" type="hidden" class="form-control"> -->
 
     </fieldset>
-    <button ng-click="expensesUpdater()" type="submit" class="receiptBtn">Submit</button>
-  </div>
+    <button type="submit" class="receiptBtn">Submit</button>
+  </form>
 </div>

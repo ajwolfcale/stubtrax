@@ -1,10 +1,25 @@
 'use strict';
 
-angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $routeParams, $q, $window, $route, $location, FBStorageFactory) {
+angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $routeParams, $q, $window, $route, $location, FBStorageFactory, AuthFactory) {
   
+  $scope.isLoggedIn = () => {
+    console.log('ARE YOU THERE?????:   ',AuthFactory.getCurrentUser());
+    if (AuthFactory.getCurrentUser()) return true;
+    else return false;
+  };
+
+  $scope.logout = () => {
+    console.log("scope account?", $scope.account);
+    AuthFactory.logoutUser($scope.account).then((user) => {
+      console.log("logged out", user);
+      $location.path("/login");
+    });
+  };
+
   let currentUserId = null;
   $scope.newerExpense = {};
   
+
   $scope.$on("handleBroadcast", function(event, user) {
     // console.log("handleBroadcast called in expenseCtrl", user);
     currentUserId = user.id;
@@ -113,10 +128,10 @@ angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $routePara
   $scope.expensesUpdater = () => {
     console.log('HERE IS YOUR NEWER EXPENSE', $scope.newerExpense);
     // $scope.expense_id = expense_id;
-    // FBStorageFactory.changeAnExpense(expense_id)
-    //   .then(() => {
-    //     console.log("updated");
-    //   });
+    FBStorageFactory.changeAnExpense($scope.newerExpense)
+      .then(() => {
+        console.log("updated", $scope.newerExpense);
+      });
   };
 
 });
