@@ -3,7 +3,7 @@
 angular.module("Stubtrax").controller("ExpenseCtrl", function($scope, $routeParams, $q, $window, $route, $location, FBStorageFactory, AuthFactory) {
   
   $scope.isLoggedIn = () => {
-    console.log('ARE YOU THERE?????:   ',AuthFactory.getCurrentUser());
+    // console.log('ARE YOU THERE?????:   ',AuthFactory.getCurrentUser());
     if (AuthFactory.getCurrentUser()) return true;
     else return false;
   };
