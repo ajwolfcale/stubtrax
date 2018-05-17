@@ -3,12 +3,12 @@
 </header>
 
 <h1>My Expenses</h1>
+
+<!-- *********************** START OF EXPENSE FILTERS *********************** -->
 <div class="filter-div">
   <img src="images/filter.png" class="filter-btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
   <label class="filter-label filter-btn" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Filters</label>
 </div>
-
-
 
 <div class="form-div collapse" id="collapseExample">
   <form>
@@ -66,7 +66,7 @@
   </form>
 </div>
 </div>
-
+<!-- *********************** END OF EXPENSE FILTERS *********************** -->
 
 <div ng-init="loadAllExpenses()" class="container">
   <div class="row">
@@ -87,10 +87,18 @@
       </div>
 
       <div class="card-buttons">
-        <button ng-click="deleteSelected()" class="btn btn-outline-danger">X</button>
-        <button class="btn btn-outline-info">Edit</button>
-      </div>
+        <button ng-click="expensesDeleter(expense.id); loadAllExpenses()" class="btn btn-outline-danger">X</button>
+        <button ng-click="go('/update-expense') ; expenseEdit(expense.id)" class="btn btn-outline-info">Edit</button>
+        
+          <!-- Modals -->
+        <!-- <div ng-include="'partials/delete-modal.html'"></div> -->
+        <!-- <div ng-include="'partials/update-modal.html'"></div> -->
 
-    </div>
+        
+
   </div>
 </div>
+
+
+
+

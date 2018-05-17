@@ -2,17 +2,20 @@
   <div ng-include="'partials/navBar.html'"></div>
 </header>
 
-<div>
-<h1 class="welcome">Welcome to Stubtrax</h1>
+<div class="welcome-container"> 
+<div class="welcomer">
+<h1 class="welcome">The ultimate expense tracker</h1>
 </div>
 
 <p>Keep track of your expenses</p>
-<p>Upload pictures of receipts on the <a href=" >"New Expense"</a> page and </p>
+<p>Upload pictures of receipts on the <a ng-click="go('/expense')">New Expense</a> page</p>
+<p>Check out <a ng-click="go('/expense-search')">My Expenses</a> to find the exact expense you need</p>
 
 
 
 
 
+</div>
 
 
 <button ng-click="logout()">logout</button>

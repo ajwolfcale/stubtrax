@@ -10,7 +10,7 @@ angular
       createUser(userObj) {
         return $q((resolve, reject) => {
           $http.post("/register", userObj).then(userData => {
-            console.log("added a new user", userData);
+            // console.log("added a new user", userData);
             currentUser = userData;
             resolve(userData.data);
           }).catch(err => {
@@ -20,7 +20,7 @@ angular
       },
 
       loginUser(userObj) {
-        console.log("userObj", userObj);
+        // console.log("userObj", userObj);
 
         return $q((resolve, reject) => {
           $http.post("/login", userObj).then(user => {
@@ -34,7 +34,6 @@ angular
 
       //**********  Logout User ************
       logoutUser(userObj) {
-        console.log("bye bye user", userObj);
         return $q((resolve, reject) => {
           $http.post("/logout", userObj).then(user => {
             resolve(user.data);

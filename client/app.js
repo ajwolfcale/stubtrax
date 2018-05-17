@@ -1,5 +1,4 @@
 "use strict";
-// 'ui.bootstrap'
 angular.module("Stubtrax", ['ngRoute', 'ngFileUpload'])
   .config($routeProvider => {
     $routeProvider
@@ -21,6 +20,10 @@ angular.module("Stubtrax", ['ngRoute', 'ngFileUpload'])
       })
       .when("/expense-search", {
         templateUrl: "partials/expense-search.html",
+        controller: "ExpenseCtrl"
+      })
+      .when("/update-expense", {
+        templateUrl: "partials/update.html",
         controller: "ExpenseCtrl"
       })
       .otherwise("/");

@@ -7,6 +7,7 @@ const app = express();
 const session = require("express-session");
 const passport = require("passport");
 const bodyParser = require("body-parser");
+const methodOverride = require('method-override');
 
 const routes = require("./server/routes");
 
@@ -20,18 +21,22 @@ app.use("/angular-route", express.static(__dirname + "/node_modules/angular-rout
 app.use("/angular-cuppa-datepicker", express.static(__dirname + "/node_modules/angular-cuppa-datepicker/js/"));
 app.use("/ng-file-upload", express.static(__dirname + "/node_modules/ng-file-upload/dist/"));
 
-// app.use("/angular-moment-picker", express.static(__dirname + "/node_modules/angular-moment-picker/dist/"));
-// app.use("/moment", express.static(__dirname + "/node_modules/moment/min/"));
-// app.use("/angular-momentjs", express.static(__dirname + "/node_modules/angular-momentjs/"));
-
-
-
 
 app.use(
   session({
     secret: "keyboard cat",
     resave: true,
     saveUninitialized: true
+  })
+);
+
+// Method Override
+app.use(
+  methodOverride(function(req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+      let method = req.body._method;
+      return method;
+    }
   })
 );
 

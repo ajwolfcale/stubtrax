@@ -6,13 +6,18 @@ const {
   postExpense, 
   getAllExpenses,
   findExpense,
-  deleteExpense
+  deleteExpense,
+  updateExpense,
+  getSingleExpense
 } = require('../controllers/expenseCtrl.js');
 
 router.post('/add-expense', postExpense);
 router.get('/getAllExpenses', getAllExpenses);
 router.get('/findExpense', findExpense);
+router.get('/getSingleExpense/:id', getSingleExpense);
 router.get('/deleteExpense/:id', deleteExpense);
+router.post('/updateExpense/:id', updateExpense);
+
 
 
 module.exports = router;

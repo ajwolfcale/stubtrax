@@ -14,14 +14,27 @@
 }
 
 body{
-  background: #ffffff;
+  background: #eeeeee;
   border-radius: 10px;
 }
-h1{
-  padding: 10px 5px 5px 5px;
+
+header{
+  margin-bottom: 80px;
+}
+
+.welcome-container{
+  background-color: #cccccc;
+  width: 100%;
+  height: 650px;
+}
+.welcomer{
   display: flex;
   justify-content: center;
-  @include text-shadow(0.05em);
+}
+.welcome{
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 3em;
+  color: black;
 }
 
 form{
@@ -80,7 +93,7 @@ form{
 }
 .filter-btn{
 height: 30px;
-background: white;
+background: #eeeeee;
 }
 .expense-container {
   display: flex;
@@ -91,6 +104,7 @@ background: white;
 }
 
 .card-border{
+  background: white;
   border: 4px ridge rgb(128, 128, 128);
   margin: 10px;
   box-shadow: 1px 7px 8px -4px rgb(26, 26, 26);
@@ -136,6 +150,11 @@ background: white;
   font-family: 'Josefin Sans', sans-serif;   
   margin-top:10px;
   margin-left: -25px;
+  width: 190px;
+}
+
+.edit-form{
+  max-width: 300px; 
 }
 
 .card-image{
@@ -202,6 +221,19 @@ form{
 }
 
 // BUTTONS
+.btn .btn-primary .btn-lg .btn-block {
+  color: #fff;
+  display: block;
+  width: 75%;
+  background: #DA4531 !important;
+  border-color: #DA4531 !important; 
+}
+
+.btn-primary {
+  color: #fff;
+  background: #DA4531 !important;
+  border-color: #DA4531 !important; 
+}
 
 .receiptBtn {
   background-color: #DA4531;
@@ -223,6 +255,12 @@ form{
     background-color: rgb(228, 86, 67);    
     border:0.16em solid #FEB15F;  
   }
+}
+
+.register-div{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .delete-div{

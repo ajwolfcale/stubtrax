@@ -112,7 +112,6 @@ let getBizWriteCats = (req, res, next) => {
 
 // GETS ALL USER EXPENSES between 2 selected dates in a given category that are business tax write-offs
 module.exports.findExpense = (req, res, next) => {
-  // console.log(req.query.category_id !== 'undefined' ? true : false);
   console.log("req.query:  ", req.query);
   if (req.user.id && req.query.date1 && req.query.date2 && req.query.category_id != 'undefined' && (req.query.writeoff == 'true' || req.query.business == 'true')) {
     //date, category, booleans
@@ -161,6 +160,52 @@ module.exports.deleteExpense = (req, res, next) => {
   Expense.destroy({
     where: { id: req.params.id }
   })
+    .then(expense => {
+      console.log("EXPENSE DESTROYER");
+      res.status(200).json(expense);
+    })
+    .catch(err => {
+      console.log('There has been an ERROR', err);
+      res.status(500).json({ error: err });
+    });
+};
+
+// GETS ONE EXPENSE
+module.exports.getSingleExpense = (req, res, next) => {
+  const { Expense } = req.app.get('models');
+  Expense.find({
+    where: { id: req.params.id }
+  })
+    .then(expense => {
+      console.log("***SINGLE EXPENSE FINDER***");
+      res.status(200).json(expense);
+    })
+    .catch(err => {
+      console.log('There has been an ERROR', err);
+      res.status(500).json({ error: err });
+    });
+};
+
+
+
+
+// UPDATE EXPENSE:
+module.exports.updateExpense = (req, res, next) => {
+  const { Expense } = req.app.get('models');
+  console.log('**********UPDATING EXPENSE: ********* ', req.params.id);
+  Expense.update(
+    {
+      writeoff: req.body.writeoff,
+      business: req.body.business,
+      merchant: req.body.merchant,
+      date: req.body.date,
+      total: req.body.total,
+      notes:req.body.notes,
+      category_id: req.body.category_id
+    },
+    {
+      where: { id: req.params.id }
+    })
     .then(expense => {
       res.status(200).json(expense);
     })
