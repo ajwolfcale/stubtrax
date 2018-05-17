@@ -63,3 +63,7 @@ module.exports.logout = (req, res, next) => {
     res.status(200).end();
   });
 };
+
+module.exports.logoutClicked = (req, res, next) => {
+  res.redirect("/");
+};
