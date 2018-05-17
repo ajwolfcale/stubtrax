@@ -7,6 +7,7 @@ const app = express();
 const session = require("express-session");
 const passport = require("passport");
 const bodyParser = require("body-parser");
+const methodOverride = require('method-override');
 
 const routes = require("./server/routes");
 
@@ -26,6 +27,16 @@ app.use(
     secret: "keyboard cat",
     resave: true,
     saveUninitialized: true
+  })
+);
+
+// Method Override
+app.use(
+  methodOverride(function(req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+      let method = req.body._method;
+      return method;
+    }
   })
 );
 

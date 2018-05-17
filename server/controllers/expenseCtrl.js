@@ -161,6 +161,7 @@ module.exports.deleteExpense = (req, res, next) => {
     where: { id: req.params.id }
   })
     .then(expense => {
+      console.log("EXPENSE DESTROYER");
       res.status(200).json(expense);
     })
     .catch(err => {
@@ -169,17 +170,47 @@ module.exports.deleteExpense = (req, res, next) => {
     });
 };
 
+// GETS ONE EXPENSE
+module.exports.getSingleExpense = (req, res, next) => {
+  const { Expense } = req.app.get('models');
+  Expense.find({
+    where: { id: req.params.id }
+  })
+    .then(expense => {
+      console.log("***SINGLE EXPENSE FINDER***");
+      res.status(200).json(expense);
+    })
+    .catch(err => {
+      console.log('There has been an ERROR', err);
+      res.status(500).json({ error: err });
+    });
+};
+
+
+
+
 // UPDATE EXPENSE:
-// module.exports.updateExpense = (req, res, next) => {
-//   const { Expense } = req.app.get('models');
-//   Expense.destroy({
-//     where: { id: req.params.id }
-//   })
-//     .then(expense => {
-//       res.status(200).json(expense);
-//     })
-//     .catch(err => {
-//       console.log('There has been an ERROR', err);
-//       res.status(500).json({ error: err });
-//     });
-// };
+module.exports.updateExpense = (req, res, next) => {
+  const { Expense } = req.app.get('models');
+  console.log('**********UPDATING EXPENSE: ********* ', req.params.id);
+  Expense.update(
+    {
+      writeoff: req.body.writeoff,
+      business: req.body.business,
+      merchant: req.body.merchant,
+      date: req.body.date,
+      total: req.body.total,
+      notes:req.body.notes,
+      category_id: req.body.category_id
+    },
+    {
+      where: { id: req.params.id }
+    })
+    .then(expense => {
+      res.status(200).json(expense);
+    })
+    .catch(err => {
+      console.log('There has been an ERROR', err);
+      res.status(500).json({ error: err });
+    });
+};

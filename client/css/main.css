@@ -121,6 +121,9 @@ form {
   margin-left: -25px;
   width: 190px; }
 
+.edit-form {
+  max-width: 300px; }
+
 .card-image {
   max-height: 180px;
   max-width: 90px;
@@ -173,6 +176,18 @@ form {
   margin-top: .3rem;
   margin-left: -.85rem; }
 
+.btn .btn-primary .btn-lg .btn-block {
+  color: #fff;
+  display: block;
+  width: 75%;
+  background: #DA4531 !important;
+  border-color: #DA4531 !important; }
+
+.btn-primary {
+  color: #fff;
+  background: #DA4531 !important;
+  border-color: #DA4531 !important; }
+
 .receiptBtn {
   background-color: #DA4531;
   cursor: pointer;
@@ -191,6 +206,11 @@ form {
   .receiptBtn:hover {
     background-color: #e45643;
     border: 0.16em solid #FEB15F; }
+
+.register-div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column; }
 
 .delete-div {
   height: .5em;

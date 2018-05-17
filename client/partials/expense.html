@@ -90,7 +90,7 @@
       <input name="user_id" ng-model="newExpense.user_id" type="hidden" class="form-control">
 
 
-      <button class="receiptBtn" ng-disabled="!myForm.$valid" ng-click="addExpense()">Submit</button>
+      <button class="receiptBtn" ng-disabled="!myForm.$valid" ng-click="addExpense() ; go('/expense-search')">Submit</button>
 
     </fieldset>
   </form>

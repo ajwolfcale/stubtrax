@@ -22,6 +22,10 @@ angular.module("Stubtrax", ['ngRoute', 'ngFileUpload'])
         templateUrl: "partials/expense-search.html",
         controller: "ExpenseCtrl"
       })
+      .when("/update-expense", {
+        templateUrl: "partials/update.html",
+        controller: "ExpenseCtrl"
+      })
       .otherwise("/");
   })
   .run(FBCreds => {
@@ -35,7 +39,7 @@ angular
   .run(($rootScope, $location, $route, $window, AuthFactory) => {
     $rootScope.$on("$routeChangeStart", function() {
       AuthFactory.setUserStatus().then(() => {
-        // console.log("user", AuthFactory.getCurrentUser());
+        console.log("user", AuthFactory.getCurrentUser());
         AuthFactory.broadcastUserLogin(AuthFactory.getCurrentUser());
       });
     });

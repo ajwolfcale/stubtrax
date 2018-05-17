@@ -19,7 +19,6 @@ angular
 
     // *+*+*+*+*+*+*+* SERVER CALLS TO GET EXPENSES *+*+*+*+*+*+*+*
 
-    // Gets all user expenses
     let getAllUserExpenses = (expense) => {
       return $q(function (resolve, reject) {
         $http.get('/getAllExpenses', expense)
@@ -29,6 +28,20 @@ angular
           })
           .catch(function (error) {
             reject(error);
+          });
+      });
+    };
+
+    // *+*+*+*+*+*+*+* SERVER CALL TO GET ONE EXPENSES *+*+*+*+*+*+*+*
+    let getOneExpense = (id) => {
+      return $q(function (resolve, reject) {
+        $http
+          .get(`/getSingleExpense/${id}`)
+          .then((data) => {
+            resolve(data);
+          })
+          .catch((err) => {
+            reject(err);
           });
       });
     };
@@ -47,19 +60,22 @@ angular
       });
     };
 
-    // *+*+*+*+*+*+*+* SERVER CALL TO UPDATE EXPENSES *+*+*+*+*+*+*+*
-    // let changeAnExpense = (expense_id) => {
-    //   return $q(function (resolve, reject) {
-    //     $http
-    //         .patch(`updateExpense/${expense_id}`)
-    //         .then((data) => {
-    //             resolve(data);
-    //         })
-    //         .catch((err) => {
-    //             reject(err);
-    //         });
-    // };
 
+
+    // *+*+*+*+*+*+*+* SERVER CALL TO UPDATE EXPENSES *+*+*+*+*+*+*+*
+    let changeAnExpense = (expense_id, expense) => {
+      console.log('UPDATE COMING FROM FACTORY');
+      return $q(function (resolve, reject) {
+        $http
+          .post(`updateExpense/${expense_id}`, JSON.stringify(expense))
+          .then((data) => {
+            resolve(data);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      });
+    };
 
     // Gets all user filter requests and passes request to server 
     let findExpense = (expense) => {
@@ -77,15 +93,16 @@ angular
           });
       });
     };
-    
-    return { 
-      pushImage, 
-      sendExpense, 
+
+    return {
+      pushImage,
+      sendExpense,
       getAllUserExpenses,
       findExpense,
-      deleteOneExpense
-      // changeAnExpense
+      deleteOneExpense,
+      changeAnExpense,
+      getOneExpense
     };
-    
+
   });
-    
+
