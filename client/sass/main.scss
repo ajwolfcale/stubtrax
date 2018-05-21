@@ -13,6 +13,20 @@
   text-shadow: 0 $ems $ems rgba(0, 0, 0, 0.85);
 }
 
+.welcome-container{
+  margin-top: -10px;
+  background: url('/images/landing.png') no-repeat;
+  background-size: 100%;
+  background-color: black;
+  height: 1000px;
+  border-top: 4px ridge #FEB15F;
+}
+
+// .welcome-body{
+//   background: black;
+//   height:100vh;
+// }
+
 body{
   background: #eeeeee;
   border-radius: 10px;
@@ -22,11 +36,6 @@ header{
   margin-bottom: 80px;
 }
 
-.welcome-container{
-  background-color: #cccccc;
-  width: 100%;
-  height: 650px;
-}
 .welcomer{
   display: flex;
   justify-content: center;
