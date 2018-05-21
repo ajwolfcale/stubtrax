@@ -1,5 +1,5 @@
 node_modules
 images/ERD
 notes.md 
-server/config/config.js
 client/values/fb-creds.js
+server/config/config.json 
