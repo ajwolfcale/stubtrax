@@ -2,3 +2,4 @@ node_modules
 images/ERD
 notes.md 
 client/values/fb-creds.js
+server/config/config.js
