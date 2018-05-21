@@ -1,15 +1,15 @@
 "use strict";
 
-let isAuth = AuthFactory => {
-  return new Promise((resolve, reject) => {
-    let userExistence = AuthFactory.getCurrentUser();
-    if (userExistence) {
-      resolve();
-    } else {
-      reject();
-    }
-  });
-}; 
+// let isAuth = AuthFactory => {
+//   return new Promise((resolve, reject) => {
+//     let userExistence = AuthFactory.getCurrentUser();
+//     if (userExistence) {
+//       resolve();
+//     } else {
+//       reject();
+//     }
+//   });
+// }; 
 
 angular.module("Stubtrax", ['ngRoute', 'ngFileUpload'])
   .config($routeProvider => {

@@ -6,6 +6,10 @@ angular
   .controller("AuthCtrl", function($scope, AuthFactory, $location) {
     $scope.account = {};
 
+    $scope.go = function ( path ) {
+      $location.path( path );
+    };
+
     $scope.register = () => {
       $scope.errorMsg = "";
       if ($scope.account.password !== $scope.account.passwordConf) {
